@@ -50,3 +50,5 @@ export const init = () => {
   const eff = new Effect()
   eff.show()
 }
+
+export const sum = (a, b) => a + b

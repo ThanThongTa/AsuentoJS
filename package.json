@@ -1,5 +1,9 @@
 {
+  "name": "Asuento JS",
+  "scripts": {
+    "test": "mocha"
+  },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "mocha": "^10.5.2"
   }
 }
