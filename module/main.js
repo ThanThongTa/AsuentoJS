@@ -1,10 +1,6 @@
 /* global requestAnimationFrame */
 let co, ctx, loader, title
 
-// r(beta) = 0.8 + 1.6 * sin(6 * beta)
-// theta(beta) = 2 * beta
-// phi(beta) = 0.6 * pi * sin(12 * beta)
-
 // r(beta) = 1.2 * 0.6 * sin(0.5 * pi + 6 * beta)
 // theta(beta) = 4 * beta
 // phi(beta) = 0.2 * pi * sin(6 * beta)
@@ -28,10 +24,6 @@ let co, ctx, loader, title
 // y = -10 cos(2 u) - 27 sin(2 u) + 38 cos(4 u) + 46 sin(4 u)
 // z = 70 cos(3 u) - 40 sin(3 u)
 // where 0 < u < 2 pi
-
-// x = r * cos(phi) * cos(theta)
-// y = r * cos(phi) * sin(theta)
-// z = r * sin(phi)
 
 const animate = () => {
   ctx.clearRect(0, 0, co.width, co.height)
