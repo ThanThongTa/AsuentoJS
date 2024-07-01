@@ -13,7 +13,7 @@ const vectors = []
 const maxVectors = 3600
 
 function setup () {
-  createCanvas(800, 800, WEBGL)
+  createCanvas(window.innerWidth, window.innerHeight, WEBGL)
 }
 
 function draw () {
@@ -55,7 +55,7 @@ function draw () {
     // ambientMaterial(v.x, v.y, v.z)
     push()
     translate(v.x, v.y, v.z)
-    emissiveMaterial(255, 255, 0, 0.5)
+    emissiveMaterial(v.x, v.y, v.z, 0.5)
     sphere(2.5)
     pop()
     // vertex(v.x, v.y, v.z)
