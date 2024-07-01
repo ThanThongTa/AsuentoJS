@@ -1,3 +1,3 @@
-import { init } from '../module/main.js'
+import { main } from '../module/main.js'
 
-init()
+main()

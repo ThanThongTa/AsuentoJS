@@ -30,12 +30,14 @@ const setupLoadingAnimation = () => {
   }, 4250)
 }
 
-function Effect () {
-  this.a = 1
-  this.show = () => {
-    console.log('show')
+class Effect {
+  constructor () {
+    this.a = 1
+    this.show = () => {
+      console.log('show')
+    }
+    this.update = () => { }
   }
-  this.update = () => { }
 }
 
 export const init = () => {
@@ -49,6 +51,11 @@ export const init = () => {
   setupLoadingAnimation()
   const eff = new Effect()
   eff.show()
+}
+
+export const main = () => {
+  init()
+  animate()
 }
 
 export const sum = (a, b) => a + b
