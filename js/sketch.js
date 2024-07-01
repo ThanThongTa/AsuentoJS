@@ -21,27 +21,12 @@ function draw () {
   orbitControl()
   ambientLight(51, 0.1)
 
-  // rectMode(CENTER)
-  // rect(0, 0, 100, 150)
-
-  let dx = mouseX - width / 2
-  let dy = mouseY - height / 2
-  // lights()
-  // ambientLight(255, 255, 255)
-  // directionalLight(0, 255, 0, 0, 1, 0)
-  // directionalLight(255, 0, 0, 0, 0, 1)
-  // rotateX(angle)
-  // rotateY(angle)
-  // rotateZ(angle)
-
-  // normalMaterial()
-  // box()
   angle += 0.01
 
   scale(0.5)
   const radius = 100
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     let r = 0.8 + 1.6 * sin(6 * beta)
     const theta = 2 * beta
     const phi = 0.6 * PI * sin(12 * beta)
@@ -68,10 +53,15 @@ function draw () {
     // stroke(v.x, v.y, v.z)
     // fill(v.x, v.y, v.z)
     // ambientMaterial(v.x, v.y, v.z)
+    push()
+    translate(v.x, v.y, v.z)
     emissiveMaterial(255, 255, 0, 0.5)
-    vertex(v.x - 2, v.y - 2, v.z)
-    vertex(v.x, v.y + 2, v.z - 2)
-    vertex(v.x + 2, v.y, v.z + 2)
+    sphere(2.5)
+    pop()
+    // vertex(v.x, v.y, v.z)
+    // vertex(v.x - 2, v.y - 2, v.z)
+    // vertex(v.x, v.y + 2, v.z - 2)
+    // vertex(v.x + 2, v.y, v.z + 2)
   }
   endShape()
 
