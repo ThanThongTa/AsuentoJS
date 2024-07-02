@@ -1,5 +1,5 @@
-/* global requestAnimationFrame */
-let co, ctx, loader, title
+/* global p5 */
+let co, loader, title
 
 // r(beta) = 1.2 * 0.6 * sin(0.5 * pi + 6 * beta)
 // theta(beta) = 4 * beta
@@ -25,13 +25,6 @@ let co, ctx, loader, title
 // z = 70 cos(3 u) - 40 sin(3 u)
 // where 0 < u < 2 pi
 
-const animate = () => {
-  ctx.clearRect(0, 0, co.width, co.height)
-  // ctx.fillStyle = 'rgb(51, 51, 51)'
-  // ctx.fillRect(0, 0, co.width, co.height)
-  requestAnimationFrame(animate)
-}
-
 const setupLoadingAnimation = () => {
   co.style.display = 'none'
   title = document.querySelector('h1')
@@ -54,32 +47,27 @@ const setupLoadingAnimation = () => {
   }, 4250)
 }
 
-class Effect {
-  constructor () {
-    this.a = 1
-    this.show = () => {
-      console.log('show')
-    }
-    this.update = () => { }
-  }
-}
-
 export const init = () => {
   co = document.querySelector('#canvas')
-  ctx = co.getContext('2d')
   co.width = window.innerWidth - 20
   co.height = window.innerHeight - 20
-  // ctx.fillStyle = 'rgb(51, 51, 51)'
-  // ctx.fillRect(0, 0, co.width, co.height)
-
   setupLoadingAnimation()
-  const eff = new Effect()
-  eff.show()
 }
 
 export const main = () => {
   init()
-  animate()
 }
 
-export const sum = (a, b) => a + b
+let alpha = 0
+
+new p5(function (p5) { // eslint-disable-line new-cap, no-new
+  p5.setup = function () {
+    p5.createCanvas(window.innerWidth, window.innerHeight, p5.WEBGL)
+    p5.background(51, 5)
+  }
+  p5.draw = function () {
+    p5.fill(0, 0, 0, alpha)
+    p5.rect(-p5.width / 4, -p5.height / 4, p5.width / 2, p5.height / 2)
+    if (alpha !== 1) alpha += 0.005
+  }
+})

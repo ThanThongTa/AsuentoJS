@@ -66,7 +66,7 @@ body.loading {
     font-weight: 800;
     -webkit-text-stroke: 1px #fff9;
     color: transparent;
-    animation: animate 2s ease-in-out infinite;
+    animation: animate 4.015s ease-in;
     animation-delay: calc(0.15s * var(--i));
 }
 
@@ -103,7 +103,7 @@ body.loading {
         text-shadow: none;
     }
 
-    20% {
+    15% {
         transform: translateY(-60px);
         color: #fff;
         text-shadow: 0 0 5px #fff,
@@ -111,10 +111,31 @@ body.loading {
             0 0 50px #fff;
     }
 
-    40%,
-    100% {
+    30%,
+    60% {
         transform: translateY(0px);
         color: transparent;
         text-shadow: none;
+    }
+
+    75% {
+        transform: translateY(-60px);
+        color: #fff;
+        text-shadow: 0 0 5px #fff,
+            0 0 25px #fff,
+            0 0 50px #fff;
+    }
+
+    90% {
+        transform: translateY(0px);
+        color: transparent;
+        text-shadow: none;
+        -webkit-text-stroke: 1px #000000;
+        opacity: 0;
+    }
+
+    91%,
+    100% {
+        color: #000;
     }
 }
