@@ -1,3 +1,10 @@
+// 3D Knot
+// Than Thong Ta
+// inspired by The Coding Train / Daniel Shiffman
+// https://www.youtube.com/watch?v=r6YMKr1X0VA&list=TLPQMDEwNzIwMjQ2yV5F1BzwMQ&index=2
+// and Paul Bourke
+// https://paulbourke.net/geometry/knots/
+
 /* global p5 */
 let co, loader, title
 
@@ -58,16 +65,66 @@ export const main = () => {
   init()
 }
 
-let alpha = 0
+const sketch = function (p5) {
+  p5.display = false
 
-new p5(function (p5) { // eslint-disable-line new-cap, no-new
+  p5.angle = 0
+  p5.beta = 0
+  p5.vectors = []
+  p5.maxVectors = 3600
+
   p5.setup = function () {
     p5.createCanvas(window.innerWidth, window.innerHeight, p5.WEBGL)
-    p5.background(51, 5)
   }
   p5.draw = function () {
-    p5.fill(0, 0, 0, alpha)
-    p5.rect(-p5.width / 4, -p5.height / 4, p5.width / 2, p5.height / 2)
-    if (alpha !== 1) alpha += 0.005
+    if (!p5.display) return
+    p5.background(51, 5)
+    p5.orbitControl()
+    p5.ambientLight(51, 0.1)
+
+    p5.angle += 0.01
+
+    p5.scale(0.5)
+    const radius = 100
+
+    for (let i = 0; i < 10; i++) {
+      let r = 0.8 + 1.6 * p5.sin(6 * p5.beta)
+      const theta = 2 * p5.beta
+      const phi = 0.6 * p5.PI * p5.sin(12 * p5.beta)
+
+      r = radius * r
+      const x = r * p5.cos(phi) * p5.cos(theta)
+      const y = r * p5.cos(phi) * p5.sin(theta)
+      const z = r * p5.sin(phi)
+
+      p5.vectors.push(p5.createVector(x, y, z))
+
+      if (p5.vectors.length > p5.maxVectors) p5.vectors.shift()
+
+      p5.beta += p5.PI / p5.maxVectors
+
+      if (p5.beta >= p5.PI) {
+        p5.beta = 0
+      }
+    }
+
+    p5.noStroke()
+    p5.beginShape(p5.TRIANGLE_STRIP)
+    for (const v of p5.vectors) {
+      p5.push()
+      p5.translate(v.x, v.y, v.z)
+      p5.emissiveMaterial(v.x, v.y, v.z, 0.5)
+      p5.sphere(2.5)
+      p5.pop()
+    }
+    p5.endShape()
   }
-})
+}
+
+const myp5 = new p5(sketch) // eslint-disable-line new-cap, no-new
+
+function displaySketch () {
+  myp5.display = true
+}
+
+setTimeout(displaySketch, 4500)
