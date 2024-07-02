@@ -6,7 +6,6 @@
 // https://paulbourke.net/geometry/knots/
 
 /* global p5 */
-let co, loader, title
 
 // r(beta) = 1.2 * 0.6 * sin(0.5 * pi + 6 * beta)
 // theta(beta) = 4 * beta
@@ -32,39 +31,6 @@ let co, loader, title
 // z = 70 cos(3 u) - 40 sin(3 u)
 // where 0 < u < 2 pi
 
-const setupLoadingAnimation = () => {
-  co.style.display = 'none'
-  title = document.querySelector('h1')
-  title.style.display = 'none'
-
-  const loadString = 'loading...'
-  loader = document.querySelector('.loader')
-  for (let i = 0; i < loadString.length; i++) {
-    const span = document.createElement('span')
-    span.innerText = loadString.charAt(i)
-    span.setAttribute('style', '--i:' + (i + 1))
-    loader.append(span)
-  }
-
-  setTimeout(() => {
-    loader.classList.add('vanish')
-    co.style.display = 'block'
-    title.style.display = 'block'
-    document.querySelector('body').classList.remove('loading')
-  }, 4250)
-}
-
-export const init = () => {
-  co = document.querySelector('#canvas')
-  co.width = window.innerWidth - 20
-  co.height = window.innerHeight - 20
-  setupLoadingAnimation()
-}
-
-export const main = () => {
-  init()
-}
-
 const sketch = function (p5) {
   p5.display = false
 
@@ -78,13 +44,13 @@ const sketch = function (p5) {
   }
   p5.draw = function () {
     if (!p5.display) return
-    p5.background(51, 5)
+    p5.background(255, 25)
     p5.orbitControl()
     p5.ambientLight(51, 0.1)
 
     p5.angle += 0.01
 
-    p5.scale(0.5)
+    p5.scale(1.2)
     const radius = 100
 
     for (let i = 0; i < 10; i++) {
@@ -123,8 +89,6 @@ const sketch = function (p5) {
 
 const myp5 = new p5(sketch) // eslint-disable-line new-cap, no-new
 
-function displaySketch () {
+export const displaySketch = () => {
   myp5.display = true
 }
-
-setTimeout(displaySketch, 4500)

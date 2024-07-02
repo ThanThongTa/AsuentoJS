@@ -10,6 +10,93 @@ body {
     padding: 0;
 }
 
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #f1f4f9, #dff1ff);
+}
+
+section .color {
+    position: absolute;
+    filter: blur(150px);
+}
+
+section .color:nth-child(1) {
+    top: -35%;
+    width: 60%;
+    height: 60%;
+    background-color: #ff359b;
+}
+
+
+section .color:nth-child(2) {
+    bottom: -30%;
+    left: 10%;
+    width: 60%;
+    height: 60%;
+    background-color: #fffd87;
+}
+
+section .color:nth-child(3) {
+    bottom: 2%;
+    right: 10%;
+    width: 30%;
+    height: 30%;
+    background-color: #00d2ff;
+}
+
+.left.box {
+    position: absolute;
+    top: 3%;
+    left: 5%;
+}
+
+.right.box {
+    position: absolute;
+    top: 3%;
+    right: 5%;
+}
+
+.container {
+    position: relative;
+    width: 400px;
+    min-height: 800px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+}
+
+.topcontainer {
+    width: 200px;
+    min-height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+}
+
+.container h2 {
+    position: relative;
+    padding-top: 5%;
+    width: 100%;
+    text-align: center;
+}
+
 canvas {
     display: block;
     position: absolute;
@@ -21,121 +108,17 @@ canvas {
 
 h1 {
     position: absolute;
-    top: 20px;
+    top: 2%;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    color: #ddd;
-    display: none;
-    animation: appear 1s ease-in-out;
+    color: #000;
 }
 
 body {
-    background-color: rgb(0, 0, 0);
-}
-
-body.loading {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-}
-
-#canvas {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.loader {
-    display: flex;
-    position: relative;
-    cursor: default;
-    -webkit-box-reflect: below -20px linear-gradient(transparent, #0004);
-}
-
-.loader.vanish {
-    animation: vanish 1s ease-in-out;
-}
-
-.loader span {
-    position: relative;
-    display: inline-flex;
-    font-size: 3em;
-    font-weight: 800;
-    -webkit-text-stroke: 1px #fff9;
-    color: transparent;
-    animation: animate 4.015s ease-in;
-    animation-delay: calc(0.15s * var(--i));
-}
-
-.loader.vanish span {
-    display: none;
-}
-
-@keyframes appear {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes vanish {
-    from {
-        display: flex;
-        opacity: 1;
-    }
-
-    to {
-        display: none;
-        opacity: 0;
-    }
-}
-
-@keyframes animate {
-    0% {
-        transform: translateY(0px);
-        color: transparent;
-        text-shadow: none;
-    }
-
-    15% {
-        transform: translateY(-60px);
-        color: #fff;
-        text-shadow: 0 0 5px #fff,
-            0 0 25px #fff,
-            0 0 50px #fff;
-    }
-
-    30%,
-    60% {
-        transform: translateY(0px);
-        color: transparent;
-        text-shadow: none;
-    }
-
-    75% {
-        transform: translateY(-60px);
-        color: #fff;
-        text-shadow: 0 0 5px #fff,
-            0 0 25px #fff,
-            0 0 50px #fff;
-    }
-
-    90% {
-        transform: translateY(0px);
-        color: transparent;
-        text-shadow: none;
-        -webkit-text-stroke: 1px #000000;
-        opacity: 0;
-    }
-
-    91%,
-    100% {
-        color: #000;
-    }
+    overflow: hidden;
 }

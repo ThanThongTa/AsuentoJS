@@ -1,3 +1,3 @@
-import { main } from '../module/main.js'
+import { displaySketch } from '../module/main.js'
 
-main()
+displaySketch()
