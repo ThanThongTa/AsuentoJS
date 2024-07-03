@@ -37,7 +37,7 @@ const sketch = function (p5) {
   p5.angle = 0
   p5.beta = 0
   p5.vectors = []
-  p5.maxVectors = 36000
+  p5.maxVectors = 10000
 
   p5.setup = function () {
     p5.createCanvas(window.innerWidth, window.innerHeight, p5.WEBGL)
@@ -50,10 +50,9 @@ const sketch = function (p5) {
 
     p5.angle += 0.01
 
-    p5.scale(1.2)
-    const radius = 100
+    const radius = 50
 
-    for (let i = 0; i < 240; i++) {
+    for (let i = 0; i < 300; i++) {
       let r = 0.8 + 1.6 * p5.sin(6 * p5.beta)
       const theta = 2 * p5.beta
       const phi = 0.6 * p5.PI * p5.sin(12 * p5.beta)
