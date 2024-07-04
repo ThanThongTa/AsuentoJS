@@ -1,9 +1,36 @@
 {
-  "name": "Asuento JS",
+  "name": "asuento-js",
   "scripts": {
     "test": "mocha"
   },
   "devDependencies": {
     "mocha": "^10.5.2"
+  },
+  "version": "0.0.1",
+  "description": "3d knot geometry using p5.js and webgl",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThanThongTa/AsuentoJS.git"
+  },
+  "keywords": [
+    "javascript",
+    "webgl",
+    "creative-coding",
+    "knot-theory",
+    "glassmorphism"
+  ],
+  "author": "Thong Ta",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ThanThongTa/AsuentoJS/issues"
+  },
+  "homepage": "https://github.com/ThanThongTa/AsuentoJS#readme",
+  "dependencies": {
+    "express": "^4.19.2"
   }
 }
