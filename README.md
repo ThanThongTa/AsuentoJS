@@ -55,7 +55,9 @@ Für die Einstellungen des Live Servers, die settings.json in VS Code öffnen:
 - die settings.json öffnet sich. Möglicherweise ist sie leer, oder es gibt sie noch gar nicht
 
 Einstellungen in der VS Code Settings.json für den Live Server:
-`{
+
+```
+{
     ... other settings ...
   "liveServer.settings.host": "localhost",
   "liveServer.settings.https": {
@@ -64,4 +66,5 @@ Einstellungen in der VS Code Settings.json für den Live Server:
     "key": "/Users/Student/certs/localhost.key", //full path of the private key
     "passphrase": ""
   },
-}`
+}
+```
