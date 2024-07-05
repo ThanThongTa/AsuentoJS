@@ -40,7 +40,7 @@ const sketch = function (p5) {
   p5.maxVectors = 10000
 
   p5.setup = function () {
-    p5.createCanvas(window.innerWidth, window.innerHeight, p5.WEBGL)
+    p5.createCanvas(200, 200, p5.WEBGL)
   }
   p5.draw = function () {
     if (!p5.display) return
@@ -90,4 +90,10 @@ const myp5 = new p5(sketch) // eslint-disable-line new-cap, no-new
 
 export const displaySketch = () => {
   myp5.display = true
+}
+
+export function serviceWorkerAktiv () {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../service-worker.js', { scope: './' })
+  }
 }

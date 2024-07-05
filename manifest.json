@@ -1,0 +1,38 @@
+{
+  "short_name": "Trefoil",
+  "name": "Trefoil Knots Samples",
+  "lang": "de",
+  "description": "Geometric knot samples. Explore and customize 3D Knots.",
+  "start_url": ".",
+  "background_color": "#f4cccc",
+  "theme_color": "#6aa84f",
+  "dir": "ltr",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [{
+    "src": "img/icon-128x128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  }, {
+    "src": "img/icon-144x144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "img/icon-152x152.png",
+    "sizes": "152x152",
+    "type": "image/png"
+  }, {
+    "src": "img/icon-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "img/icon-256x256.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }, {
+    "src": "img/icon-512x512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+ }

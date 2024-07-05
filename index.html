@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <link rel="manifest" href="manifest.json" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Knots</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="libraries/p5.min.js"></script>
+    <script src="js/app.js" type="module"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta name="description" content="A sample 3D knot simulator app" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D Knots</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <script src="libraries/p5.min.js"></script>
-  <script src="js/app.js" type="module"></script>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-</head>
-
-<body class="loading">
-  <canvas id="canvas"></canvas>
-  <section>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="left box">
-      <div class="container">
-        <h2>GUI</h2>
-        <div class="btn"><a href="#">Read more.</a></div>
-        <div class="btn"><a href="#">Read more.</a></div>
-        <div class="btn"><a href="#">Read more.</a></div>
+  <body class="loading">
+    <!-- <canvas id="canvas"></canvas> -->
+    <section>
+      <div class="color"></div>
+      <div class="color"></div>
+      <div class="color"></div>
+      <div class="left box">
+        <div class="container">
+          <h2>GUI</h2>
+          <div class="btn"><a href="#">Read more.</a></div>
+          <div class="btn"><a href="#">Read more.</a></div>
+          <div class="btn"><a href="#">Read more.</a></div>
+        </div>
       </div>
-    </div>
-    <div class="right box">
-      <div class="container">
-        <h2>List</h2>
+      <div class="right box">
+        <div class="container">
+          <h2>List</h2>
+          <button class="add-button">Install</button>
+        </div>
       </div>
-    </div>
-  </section>
-  <h1 class="topcontainer">3D Knoten Simulator</h1>
-</body>
-
+    </section>
+    <h1 class="topcontainer">3D Knoten Simulator</h1>
+  </body>
 </html>
