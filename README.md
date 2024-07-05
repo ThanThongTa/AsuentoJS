@@ -10,7 +10,7 @@ OpenSSL
 Überprüfen, ob OpenSSL installiert ist:
 
 - Terminal öffnen
-- Folgendes Command eingeben: openssl version
+- Folgendes Command eingeben: `openssl version`
 - wenn eine Version angezeigt wird, ist openssl installiert
 - wenn nicht, am besten über HomeBrew nach installieren
 
@@ -29,12 +29,16 @@ Wenn OpenSSL installiert ist:
 Laut [Let's encrypt](https://letsencrypt.org/docs/certificates-for-localhost/)
 
 - Terminal öffnen und folgenden OpenSSL Command ausführen:
-  `openssl req -x509 -out localhost.crt -keyout localhost.key \
+
+```
+openssl req -x509 -out localhost.crt -keyout localhost.key \
 -newkey rsa:2048 -nodes -sha256 \
 -subj '/CN=localhost' -extensions EXT -config <( \
- printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")`
+ printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+```
 
 Es werden zwei Dateien erzeugt. `localhost.key` und `localhost.cert`
+
 Diese können dann im Finder in ein Verzeichnis deiner Wahl verschoben werden
 (z.B. /User/Student/certs)
 
