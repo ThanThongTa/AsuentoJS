@@ -1,3 +1,4 @@
+/* eslint-env serviceworker */
 /* global self, caches */
 // Set a name for the current cache
 const cacheName = 'trefoil'

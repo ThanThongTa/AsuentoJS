@@ -4,7 +4,8 @@
     "test": "mocha"
   },
   "devDependencies": {
-    "mocha": "^10.5.2"
+    "mocha": "^10.5.2",
+    "standard": "*"
   },
   "version": "0.0.1",
   "description": "3d knot geometry using p5.js and webgl",
