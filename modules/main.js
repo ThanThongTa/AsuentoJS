@@ -65,8 +65,8 @@ const sketch = function (p5) {
         z = r * p5.sin(phi)
         break
       default:
-        x = radius * p5.sin(beta)
-        y = radius * p5.cos(beta)
+        x = radius * p5.cos(beta)
+        y = radius * p5.sin(beta)
         z = 0
     }
     return p5.createVector(x, y, z)
