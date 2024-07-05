@@ -43,6 +43,7 @@ const sketch = function (p5) {
   const drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
   const knotType = 0
   const radius = 50
+  const ambientLight = 128 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
 
   // Variablen, die innerhalb der Anwendung geöändert werden
   // let angle = 0
@@ -64,8 +65,8 @@ const sketch = function (p5) {
         z = r * p5.sin(phi)
         break
       default:
-        x = r * p5.sin(theta)
-        y = r * p5.cos(theta)
+        x = radius * p5.sin(beta)
+        y = radius * p5.cos(beta)
         z = 0
     }
     return p5.createVector(x, y, z)
@@ -80,6 +81,7 @@ const sketch = function (p5) {
 
     // Beta ist der Winkel, der gerade gezeichnet wird.
     // Beta weitersetzen, für die Animation
+    // 2 * PI = 360 Grad
     beta += 2 * p5.PI / maxVectors
 
     // Beta wieder auf 0 setzen, um die Animation wieder von vorne zu starten
@@ -101,7 +103,7 @@ const sketch = function (p5) {
     // Orbit Controls sind die Mauskontrollen
     p5.orbitControl()
     // Licht von überall
-    p5.ambientLight(51, 0.1)
+    p5.ambientLight(ambientLight)
 
     // Kugeln berechnen
     for (let i = 0; i < drawSpeed; i++) {
@@ -109,16 +111,21 @@ const sketch = function (p5) {
     }
 
     // Kugeln zeichnen
+    // Keine Umrisse für die Kugeln
     p5.noStroke()
-    p5.beginShape()
     for (const v of vectors) {
+      // Push bedeutet, dass wir den aktuellen Zustand bestimmter Werte speichern
       p5.push()
+      // in WebGL 3D müssen wir über translate zu dem Punkt, an dem wir die Kugel zeichnen wollen
       p5.translate(v.x, v.y, v.z)
+      // Die Kugel braucht ein Material. Emissive bedeutet, dass es Licht ausstrahlt
       p5.emissiveMaterial(v.x, v.y, v.z, materialAlpha)
+      // normales Material wird nicht von Licht beeinflusst
+      // p5.normalMaterial()
       p5.sphere(sphereRadius)
+      // Mit Pop holen wir den gespeicherten Zustand bestimmter Werte zurück
       p5.pop()
     }
-    p5.endShape()
   }
 }
 
