@@ -1,6 +1,11 @@
-On my way to learning coding basics, I want to create this Javascript app, where a user can change and save settings for a mathematically computated 3D knot
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
-Nur für Mac Development Machines:
+On my way to learning coding basics, I want to create this Javascript app,
+where a user can change and save settings for a mathematically computated 3D knot
+
+Anleitung für Mac Development Machines, um ein Zertifikat zu erstellen,
+und dem self signed certificate zu vertrauen.
+Kein apache, MAMP, XAMPP, nodeJS erforderlich.
 
 Benötigt:
 Terminal-Zugriff / CommandLine
@@ -17,7 +22,8 @@ OpenSSL
 Überprüfen, ob HomeBrew installiert ist:
 
 - dazu im Terminal diesen Command ausführen: `brew --version`
-- falls HomeBrew nicht installiert ist, gibt es in GitHub unter 'Assets' eine .pkg als Installation
+- falls HomeBrew nicht installiert ist, gibt es in GitHub unter
+  'Assets' eine .pkg als Installation
   [Homebrew Github](https://github.com/Homebrew/brew/releases)
 - .pkg herunterladen und installieren
 
@@ -56,7 +62,8 @@ Für die Einstellungen des Live Servers, die settings.json in VS Code öffnen:
 
 - Command + Komma öffnet die VS Code Settings
 - Rechts oben in der Leiste befinden sich drei Icons. Auf das linke Icon klicken.
-- die settings.json öffnet sich. Möglicherweise ist sie leer, oder es gibt sie noch gar nicht
+- die settings.json öffnet sich. Möglicherweise ist sie leer,
+  oder es gibt sie noch gar nicht
 
 Einstellungen in der VS Code settings.json für den Live Server:
 

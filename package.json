@@ -1,5 +1,5 @@
 {
-  "name": "asuento-js",
+  "name": "trefoil",
   "scripts": {
     "test": "mocha"
   },
