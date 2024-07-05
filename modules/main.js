@@ -41,7 +41,7 @@ const sketch = function (p5) {
   const sphereRadius = 2.5
   const materialAlpha = 0.5
   const drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
-  const knotType = 1
+  const knotType = 0
   const radius = 50
 
   // Variablen, die innerhalb der Anwendung geöändert werden
@@ -64,8 +64,8 @@ const sketch = function (p5) {
         z = r * p5.sin(phi)
         break
       default:
-        x = r * p5.cos(theta)
-        y = r * p5.sin(theta)
+        x = r * p5.sin(theta)
+        y = r * p5.cos(theta)
         z = 0
     }
     return p5.createVector(x, y, z)
@@ -80,10 +80,10 @@ const sketch = function (p5) {
 
     // Beta ist der Winkel, der gerade gezeichnet wird.
     // Beta weitersetzen, für die Animation
-    beta += p5.PI / maxVectors
+    beta += 2 * p5.PI / maxVectors
 
     // Beta wieder auf 0 setzen, um die Animation wieder von vorne zu starten
-    if (beta >= p5.PI) {
+    if (beta >= 2 * p5.PI) {
       beta = 0
     }
   }
