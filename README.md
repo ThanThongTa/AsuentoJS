@@ -18,7 +18,7 @@ OpenSSL
 
 - dazu im Terminal diesen Command ausführen: `brew --version`
 - falls HomeBrew nicht installiert ist, gibt es in GitHub unter 'Assets' eine .pkg als Installation
-  [Homebrew Github][https://github.com/Homebrew/brew/releases]
+  [Homebrew Github](https://github.com/Homebrew/brew/releases)
 - .pkg herunterladen und installieren
 
 Installation von OpenSSL über HomeBrew:
@@ -26,7 +26,7 @@ Installation von OpenSSL über HomeBrew:
 - im Terminal diesen Command ausführen: `brew install openssl@3`
 
 Wenn OpenSSL installiert ist:
-Laut [Let's encrypt][https://letsencrypt.org/docs/certificates-for-localhost/]
+Laut [Let's encrypt](https://letsencrypt.org/docs/certificates-for-localhost/)
 
 - Terminal öffnen und folgenden OpenSSL Command ausführen:
   `openssl req -x509 -out localhost.crt -keyout localhost.key \
