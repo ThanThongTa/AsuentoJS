@@ -122,12 +122,16 @@ const sketch = function (p5) {
   }
 }
 
+// Aufruf des p5 Moduls
 const myp5 = new p5(sketch) // eslint-disable-line new-cap, no-new
 
+// normalerweise würde der p5 den Sketch direkt nach dem Aufruf der Seite laden
+// Hiermit können wir kontrollieren, ob und wwann wir zeichnen wollen
 export const displaySketch = () => {
   myp5.display = true
 }
 
+// Service Worker für die Offline Installation
 export function serviceWorkerAktiv () {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('../service-worker.js', { scope: './' })
