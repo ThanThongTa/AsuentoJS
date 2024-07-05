@@ -32,10 +32,10 @@
 // where 0 < u < 2 pi
 
 const sketch = function (p5) {
+  // Variablen, die über Funktionen von außen geändert werden können
   p5.display = false
 
-  // let angle = 0
-  let beta = 0
+  // Variablen, die über Slider und Buttons geändert werden können
   const vectors = []
   const maxVectors = 10000
   const sphereRadius = 2.5
@@ -43,6 +43,10 @@ const sketch = function (p5) {
   const drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
   const knotType = 1
   const radius = 50
+
+  // Variablen, die innerhalb der Anwendung geöändert werden
+  // let angle = 0
+  let beta = 0
 
   // berechnet einen einzelnen Punkt des Knotens
   const calcVector = (type) => {
