@@ -34,52 +34,84 @@
 const sketch = function (p5) {
   p5.display = false
 
-  p5.angle = 0
-  p5.beta = 0
-  p5.vectors = []
-  p5.maxVectors = 10000
+  // let angle = 0
+  let beta = 0
+  const vectors = []
+  const maxVectors = 10000
+  const sphereRadius = 2.5
+  const materialAlpha = 0.5
+  const drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
+  const knotType = 1
+  const radius = 50
 
-  p5.setup = function () {
-    p5.createCanvas(200, 200, p5.WEBGL)
+  // berechnet einen einzelnen Punkt des Knotens
+  const calcVector = (type) => {
+    let x, y, z
+
+    let r = 0.8 + 1.6 * p5.sin(6 * beta)
+    const theta = 2 * beta
+    const phi = 0.6 * p5.PI * p5.sin(12 * beta)
+
+    r = radius * r
+    switch (type) {
+      case 1:
+        x = r * p5.cos(phi) * p5.cos(theta)
+        y = r * p5.cos(phi) * p5.sin(theta)
+        z = r * p5.sin(phi)
+        break
+      default:
+        x = r * p5.cos(theta)
+        y = r * p5.sin(theta)
+        z = 0
+    }
+    return p5.createVector(x, y, z)
   }
+
+  // berechnet alle Punkte eines Knotens
+  const calcVectors = (type) => {
+    vectors.push(calcVector(type))
+
+    // nur eine bestimmte Anzahl an Kugeln zeichnen. Die ältesten werden gelöscht
+    if (vectors.length > maxVectors) vectors.shift()
+
+    // Beta ist der Winkel, der gerade gezeichnet wird.
+    // Beta weitersetzen, für die Animation
+    beta += p5.PI / maxVectors
+
+    // Beta wieder auf 0 setzen, um die Animation wieder von vorne zu starten
+    if (beta >= p5.PI) {
+      beta = 0
+    }
+  }
+
+  // p5 Funktion, die vor dem Zeichnen aufgerufen wird
+  p5.setup = function () {
+    p5.createCanvas(400, 400, p5.WEBGL)
+  }
+
+  // Loop-Funktion, die immer wieder aufgerufen wird
   p5.draw = function () {
+    // nur zeichnen, wenn display true ist
     if (!p5.display) return
     p5.background(255, 25)
+    // Orbit Controls sind die Mauskontrollen
     p5.orbitControl()
+    // Licht von überall
     p5.ambientLight(51, 0.1)
 
-    p5.angle += 0.01
-
-    const radius = 50
-
-    for (let i = 0; i < 300; i++) {
-      let r = 0.8 + 1.6 * p5.sin(6 * p5.beta)
-      const theta = 2 * p5.beta
-      const phi = 0.6 * p5.PI * p5.sin(12 * p5.beta)
-
-      r = radius * r
-      const x = r * p5.cos(phi) * p5.cos(theta)
-      const y = r * p5.cos(phi) * p5.sin(theta)
-      const z = r * p5.sin(phi)
-
-      p5.vectors.push(p5.createVector(x, y, z))
-
-      if (p5.vectors.length > p5.maxVectors) p5.vectors.shift()
-
-      p5.beta += p5.PI / p5.maxVectors
-
-      if (p5.beta >= p5.PI) {
-        p5.beta = 0
-      }
+    // Kugeln berechnen
+    for (let i = 0; i < drawSpeed; i++) {
+      calcVectors(knotType)
     }
 
+    // Kugeln zeichnen
     p5.noStroke()
-    p5.beginShape(p5.TRIANGLE_STRIP)
-    for (const v of p5.vectors) {
+    p5.beginShape()
+    for (const v of vectors) {
       p5.push()
       p5.translate(v.x, v.y, v.z)
-      p5.emissiveMaterial(v.x, v.y, v.z, 0.5)
-      p5.sphere(2.5)
+      p5.emissiveMaterial(v.x, v.y, v.z, materialAlpha)
+      p5.sphere(sphereRadius)
       p5.pop()
     }
     p5.endShape()
