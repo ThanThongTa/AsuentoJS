@@ -58,7 +58,7 @@ Für die Einstellungen des Live Servers, die settings.json in VS Code öffnen:
 - Rechts oben in der Leiste befinden sich drei Icons. Auf das linke Icon klicken.
 - die settings.json öffnet sich. Möglicherweise ist sie leer, oder es gibt sie noch gar nicht
 
-Einstellungen in der VS Code Settings.json für den Live Server:
+Einstellungen in der VS Code settings.json für den Live Server:
 
 ```
 {
