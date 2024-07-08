@@ -7,39 +7,31 @@
 
 /* global p5 */
 
-// r(beta) = 1.2 * 0.6 * sin(0.5 * pi + 6 * beta)
-// theta(beta) = 4 * beta
-// phi(beta) = 0.2 * pi * sin(6 * beta)
-
-// x = 10 (cos(t) + cos(3 t)) + cos(2 t) + cos(4 t)
-// y = 6 sin(t) + 10 sin(3 t)
-// z = 4 sin(3 t) sin(5 t / 2) + 4 sin(4 t) - 2 sin(6 t)
-// 0 < t < 2 pi
-
-// x = cos(u) [ 2 - cos(2 u/(2 k + 1)) ]
-// y = sin(u) [ 2 - cos(2 u/(2 k + 1)) ]
-// z = -sin(2 u/(2 k + 1))
-// where 0 < u < (4 k + 2) pi
-
-// x = 41 cos(u) - 18 sin(u) - 83 cos(2 u) - 83 sin(2 u) - 11 cos(3 u) + 27 sin(3 u)
-// y = 36 cos(u) + 27 sin(u) - 113 cos(2 u) + 30 sin(2 u) + 11 cos(3 u) - 27 sin(3 u)
-// z = 45 sin(u) - 30 cos(2 u) + 113 sin(2 u) - 11 cos(3 u) + 27 sin(3 u)
-// where 0 < u < 2 pi
-
-// x = -22 cos(u) - 128 sin(u) - 44 cos(3 u) - 78 sin(3 u)
-// y = -10 cos(2 u) - 27 sin(2 u) + 38 cos(4 u) + 46 sin(4 u)
-// z = 70 cos(3 u) - 40 sin(3 u)
-// where 0 < u < 2 pi
-
 const sketch = function (p5) {
   // Variablen, die über Funktionen von außen geändert werden können
   p5.display = false
 
+  const UNKNOT = 0
   const TORUS = 1
   const EIGHT = 2
   const TREFOIL = 3
   const GRANNY = 4
-  const BRAID = 5
+  const CINQUEFOIL = 5
+  const CLOVER = 6
+  const TREFOIL2 = 7
+  const EIGHTS = 9
+  const THREETWIST = 10
+  const STEVEDORE = 11
+  const GRANNY2 = 12
+  const CARRICK = 13
+  const LISSAJOUS5 = 14
+  const SEPTAFOIL = 15
+  const TREFOIL3 = 16
+  const EIGHT3 = 17
+  const CINQUEFOIL2 = 18
+  const TREFOIL4 = 19
+  const TORUS3 = 20
+  const KNOT5 = 21
 
   // Variablen, die über Slider und Buttons geändert werden können
   const vectors = []
@@ -47,31 +39,16 @@ const sketch = function (p5) {
   const sphereRadius = 2.5
   const materialAlpha = 0.5
   const drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
-  const knotType = 0
+  const knotType = UNKNOT
   const radius = 50
   const ambientLight = 128 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
   const trefoilK = 1
 
-  let bias = 0.8
-  let rFactor1 = 1
-  let rFactor2 = 1.6
-  let rPiFactor = 0
-  let rBetaFactor = 6
-  let thetaFactor = 2
-  let phiPiFactor = 0.6
-  let phiBetaFactor = 12
-
-  // Knot 5:
-  if (knotType === 5) {
-    bias = 0
-    rFactor1 = 1.2
-    rFactor2 = 0.6
-    rPiFactor = 0.5
-    rBetaFactor = 6
-    thetaFactor = 4
-    phiPiFactor = 0.2
-    phiBetaFactor = 6
-  }
+  let r0 = 1
+  let p = 2 // longintude
+  let q = 3 // meridian
+  let m = 1
+  let r = 1
 
   // Variablen, die innerhalb der Anwendung geöändert werden
   // let angle = 0
@@ -80,48 +57,236 @@ const sketch = function (p5) {
   // berechnet einen einzelnen Punkt des Knotens
   const calcVector = (type) => {
     let x, y, z
+    let nx, ny, nz, bx, by, bz, nz2, phi, px
 
-    let r = 1
-    let theta = 2 * beta
-    let phi = 2 * p5.PI * p5.sin(6 * beta)
-
-    if (type === TORUS) {
-      r = bias * rFactor1 + rFactor2 * (rPiFactor * p5.PI + p5.sin(rBetaFactor * beta))
-      theta = thetaFactor * beta
-      phi = phiPiFactor * p5.PI * p5.sin(phiBetaFactor * beta)
-    }
-
-    r = radius * r
     switch (type) {
       case TORUS:
-        x = r * p5.cos(phi) * p5.cos(theta)
-        y = r * p5.cos(phi) * p5.sin(theta)
-        z = r * p5.sin(phi)
+        r0 = 0.8
+        r = 1.6
+        m = 1
+        p = 6
+        q = 2
+        px = 0
+        nx = 1
+        ny = 1
+        phi = 0.6 * p5.PI * p5.sin(2 * p * beta)
+        break
+      case KNOT5:
+        r0 = 0
+        r = 0.72
+        m = 1
+        p = 6
+        q = 4
+        px = 0
+        nx = 1
+        ny = 1
+        phi = 0.2 * p5.PI * p5.sin(p * beta)
+        break
+      case TREFOIL:
+        r0 = 0
+        m = 3
+        r = 1
+        p = 1
+        q = 2
+        px = 0
+        nx = 2
+        ny = 2
+        phi = p * m * beta
+        break
+      case TREFOIL2:
+        r0 = 2
+        m = 1
+        r = 1
+        p = 3
+        q = 1
+        px = 0
+        nx = 1
+        ny = 1
+        phi = p * m * beta
+        break
+      case TREFOIL4:
+        r0 = 3
+        m = 1
+        r = 1
+        p = 3
+        q = 2
+        px = 0
+        nx = 1
+        ny = 1
+        phi = p * m * beta
+        break
+      case TORUS3:
+        r0 = 3
+        m = 1
+        r = 1
+        p = 4
+        q = 3
+        px = 0
+        nx = 1
+        ny = 1
+        phi = p * m * beta
+        break
+      case CINQUEFOIL2:
+        r0 = 3
+        m = 1
+        r = 1
+        p = 5
+        q = 2
+        px = 0
+        nx = 1
+        ny = 1
+        phi = p * m * beta
         break
       case EIGHT:
-        x = 10 * p5.cos(beta) + 10 * p5.cos(3 * beta) + p5.cos(2 * beta) + p5.cos(4 * beta)
-        y = 6 * p5.sin(beta) + 10 * p5.sin(3 * beta)
-        z = 4 * p5.sin(3 * beta) * p5.sin(5 * beta / 2) + 4 * p5.sin(4 * beta) - 2 * p5.sin(6 * beta)
+        r0 = 2
+        m = 2
+        r = 1
+        p = 2
+        q = 3
+        px = 0
+        nx = 1
+        ny = 1
+        phi = p * m * beta
         break
-      case BRAID:
+      case UNKNOT:
+      default:
+        r0 = radius
+        r = 0
+        p = 0
+        q = 1
+        m = 0
+        px = 0
+        nx = 1
+        ny = 1
+        phi = 0
+        break
+    }
+
+    switch (type) {
+      case TREFOIL3:
+        nx = 2
+        ny = 2
+        nz = 4
+        bx = 0.8
+        by = 0.15
+        bz = 1
+        nz2 = 5
+        break
+      case EIGHT3:
+        nx = 2
+        ny = 2
+        nz = 6
+        bx = 6
+        by = 0.15
+        bz = 1
+        nz2 = 5
+        break
+      case THREETWIST:
+        nx = 3
+        ny = 2
+        nz = 7
+        bx = 0.7 // 1.0
+        by = 0.2 // 0.4
+        bz = 0
+        nz2 = 0
+        break
+      case STEVEDORE:
+        nx = 3
+        ny = 2
+        nz = 5
+        bx = 1.5
+        by = 0.2
+        bz = 0
+        nz2 = 0
+        break
+      case GRANNY:
+        nx = 3
+        ny = 5
+        nz = 7
+        bx = 0.7
+        by = 1.0
+        bz = 0
+        nz2 = 0
+        break
+      case CARRICK:
+        nx = 3
+        ny = 4
+        nz = 7
+        bx = 0.1
+        by = 0.7
+        bz = 0
+        nz2 = 0
+        break
+      case LISSAJOUS5:
+        nx = 2
+        ny = 3
+        nz = 7
+        bx = 0.22
+        by = 1.10
+        bz = 0
+        nz2 = 0
+        break
+      default:
+        nx = 1
+        ny = 1
+        nz = 1
+        bx = 0
+        by = 0
+        bz = 0
+        nz2 = 0
+        break
+    }
+
+    switch (type) {
+      case TORUS:
+      case KNOT5:
+      case UNKNOT:
+      case TREFOIL:
+      case TREFOIL2:
+      case TREFOIL4:
+      case TORUS3:
+      case CINQUEFOIL2:
+      case EIGHT:
+        x = (r0 + r * p5.cos(px + p * beta)) * p5.cos(q * beta) * nx
+        y = (r0 + r * p5.cos(p * beta)) * p5.sin(q * beta) * ny
+        z = r * p5.sin(phi)
+        break
+      case TREFOIL3: // 3 / 2
+      case EIGHT3: // 3 / 2
+      case THREETWIST: // 5 / 2
+      case STEVEDORE: // 6 / 1
+      case GRANNY2: // 3/1 # 3/1
+      case CARRICK: // 8/21 // Carrock set
+      case LISSAJOUS5:
+        x = p5.cos(nx * beta + bx)
+        y = p5.cos(ny * beta + by)
+        z = p5.cos(nz * beta + bz) + p5.cos(nz2 * beta)
+        break
+      case EIGHTS:
+        x = 10 * p5.cos(beta) + p5.cos(2 * beta) + 10 * p5.cos(3 * beta) + p5.cos(4 * beta)
+        y = 6 * p5.sin(beta) + 0 * p5.sin(2 * beta) + 10 * p5.sin(3 * beta)
+        z = 4 * p5.sin(3 * beta) + p5.sin(2.5 * beta) + 4 * p5.sin(4 * beta) - 2 * p5.sin(6 * beta)
+        break
+      case CLOVER:
+        x = 4 / 3 * p5.cos(beta) + 2 * p5.cos(3 * beta)
+        y = 4 / 3 * p5.sin(beta) + 2 * p5.sin(3 * beta)
+        z = 0.5 * p5.sin(2 * beta) + p5.sin(4 * beta)
+        break
+      case SEPTAFOIL:
         x = 41 * p5.cos(1 * beta) - 18 * p5.sin(1 * beta) - 83 * p5.cos(2 * beta) - 83 * p5.sin(2 * beta) - 11 * p5.cos(3 * beta) + 27 * p5.sin(3 * beta)
         y = 36 * p5.cos(1 * beta) + 27 * p5.sin(1 * beta) - 113 * p5.cos(2 * beta) + 30 * p5.sin(2 * beta) + 11 * p5.cos(3 * beta) + 27 - p5.sin(3 * beta)
         z = 0 * p5.cos(1 * beta) + 45 * p5.sin(1 * beta) - 30 * p5.cos(2 * beta) + 113 * p5.sin(2 * beta) - 11 * p5.cos(3 * beta) + 27 * p5.sin(3 * beta)
         break
-      case TREFOIL:
+      case CINQUEFOIL:
         x = p5.cos(beta) * (2 - p5.cos(2 * beta / (2 * trefoilK + 1)))
         y = p5.sin(beta) * (2 - p5.cos(2 * beta / (2 * trefoilK + 1)))
         z = -1 * p5.sin(2 * beta / (2 * trefoilK + 1))
         break
-      case GRANNY:
+      case GRANNY: // COMPOSITE
         x = -22 * p5.cos(1 * beta) - 128 * p5.sin(1 * beta) - 44 * p5.cos(3 * beta) - 78 * p5.sin(3 * beta)
         y = -10 * p5.sin(2 * beta) - 27 * p5.cos(2 * beta) + 38 * p5.sin(4 * beta) + 46 * p5.cos(4 * beta)
         z = 70 * p5.sin(3 * beta) - 40 * p5.cos(3 * beta)
         break
-      default:
-        x = radius * p5.cos(beta)
-        y = radius * p5.sin(beta)
-        z = 0
     }
     return p5.createVector(x, y, z)
   }
@@ -131,7 +296,7 @@ const sketch = function (p5) {
     vectors.push(calcVector(type))
 
     let maxBeta = 2 * p5.PI
-    if (type === TREFOIL) maxBeta = (4 * trefoilK + 2) * p5.PI
+    if (type === CINQUEFOIL) maxBeta = (4 * trefoilK + 2) * p5.PI
 
     // nur eine bestimmte Anzahl an Kugeln zeichnen. Die ältesten werden gelöscht
     if (vectors.length > maxVectors) vectors.shift()
