@@ -75,6 +75,20 @@ export const displaySketch = () => {
   myp5.display = true
 }
 
+export const initButtons = () => {
+  const marker = document.querySelector('#marker')
+  const items = document.querySelectorAll('ul li a')
+
+  function Indicator (e) {
+    marker.style.left = e.offsetLeft + 'px'
+    marker.style.width = e.offsetWidth + 'px'
+  }
+
+  items.forEach(link => {
+    link.addEventListener('mousemove', (e) => Indicator(e.target))
+  })
+}
+
 // Service Worker für die Offline Installation
 export function serviceWorkerAktiv () {
   if ('serviceWorker' in navigator) {
