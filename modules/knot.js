@@ -1,13 +1,17 @@
+// Oberklasse für alle Knoten
 export class Knot {
   constructor (p5, maxVectors, radius) {
     this.radius = radius
-    this.vectors = []
+    this.vectors = [] // Vektoren werden nachher gezeichnet
     this.maxVectors = maxVectors
-    this.beta = 0
-    this.p5 = p5
+    this.beta = 0 // Beta wird weitergesetzt, um eine Animation zu erzeugen
+    this.p5 = p5 // wird benötigt, um die Vektoren zu erstellen
   }
 }
 
+// die einzelnen Knoten Typen unterscheiden sich in der Art, wie ein Vektor berechnet wird
+// TorusKnots berechnen Vektoren mit Hilfe von zwei Parametern p und q, die auch als
+// Longitude und Meridian bezeichnet werden.
 export class TorusKnot extends Knot {
   constructor (p5, maxVectors, radius, r, p, px, q, nx, ny, m, phi, trefoilK) {
     super(p5, maxVectors, radius)
@@ -24,6 +28,7 @@ export class TorusKnot extends Knot {
     if (this.trefoilK !== 0) this.p = 2 / (2 * trefoilK + 1)
   }
 
+  // erstellt die Vektoren und gibt diese als Array zurückgeben
   getVectors () {
     this.vectors.push(this.calcVector())
     const maxBeta = (4 * this.trefoilK + 2) * this.p5.PI
@@ -44,6 +49,7 @@ export class TorusKnot extends Knot {
     return this.vectors
   }
 
+  // Berechnet einen einzelnen Vektor
   calcVector () {
     let phiValue = this.p * this.m * this.beta
     if (this.phi === 1) phiValue = 0.6 * this.p5.PI * this.p5.sin(2 * this.p * this.beta)
@@ -55,6 +61,7 @@ export class TorusKnot extends Knot {
   }
 }
 
+// LissaKnots berechnen Vektoren mit Hilfe von Tangenten und Geraden. Daher verwenden die Formeln eine Forn wie x = mx + b
 export class LissaKnot extends Knot {
   constructor (p5, maxVectors, radius, nx, ny, nz, bx, by, bz, nz2) {
     super(p5, maxVectors, radius)
@@ -67,6 +74,7 @@ export class LissaKnot extends Knot {
     this.nz2 = nz2 || 0
   }
 
+  // erstellt die Vektoren und gibt diese als Array zurückgeben
   getVectors () {
     this.vectors.push(this.calcVector())
     const maxBeta = 2 * this.p5.PI
@@ -87,6 +95,7 @@ export class LissaKnot extends Knot {
     return this.vectors
   }
 
+  // berechnet einen einzelnen Vektor
   calcVector () {
     const x = this.p5.cos(this.nx * this.beta + this.bx)
     const y = this.p5.cos(this.ny * this.beta + this.by)
@@ -95,12 +104,17 @@ export class LissaKnot extends Knot {
   }
 }
 
+// CosStackKnots berechnen Vektoren mit Hilfe von Cosinus und Sinus Formeln, die gestackt werden
+// Da das zu recht vielen Parametern führen kann, werden die Parameter in einem Objekt an den Constructor
+// weitergegeben.
+// In unserer Klasse wird nur bis 4 Cosinus und Sinus Werte gestackt.
 export class CosStackKnot extends Knot {
   constructor (p5, maxVectors, radius, options) {
     super(p5, maxVectors, radius)
     this.options = options
   }
 
+  // erstellt die Vektoren und gibt diese als Array zurückgeben
   getVectors () {
     this.vectors.push(this.calcVector())
     const maxBeta = 2 * this.p5.PI
@@ -121,9 +135,10 @@ export class CosStackKnot extends Knot {
     return this.vectors
   }
 
+  // berechnet einen einzelnen Vektor
   calcVector () {
     let zoffset = 0
-    if (this.options.zoffset) zoffset = this.p5.sin(2.5 * this.beta) - 2 * this.p5.sin(6 * this.beta)
+    if (this.options.zoffset === 1) zoffset = this.p5.sin(2.5 * this.beta) - 2 * this.p5.sin(6 * this.beta)
     const x = this.options.xc1 * this.p5.cos(1 * this.beta) + this.options.xs1 * this.p5.sin(1 * this.beta) +
     this.options.xc2 * this.p5.cos(2 * this.beta) + this.options.xs2 * this.p5.sin(2 * this.beta) +
     this.options.xc3 * this.p5.cos(3 * this.beta) + this.options.xs3 * this.p5.sin(3 * this.beta) +
@@ -140,7 +155,8 @@ export class CosStackKnot extends Knot {
   }
 }
 
-export class CosArguments {
+// Die Parameter für die CosStackKnots werden in diesem Objekt gespeichert
+export class KnotParameters {
   constructor () {
     this.xc1 = 0
     this.xs1 = 0
@@ -172,6 +188,7 @@ export class CosArguments {
   }
 }
 
+// Eine Art Enum, um die Typen der Knoten zu verwalten
 export class KnotTypes {
   static UNKNOT = 0
   static TORUS = 1
@@ -197,9 +214,12 @@ export class KnotTypes {
   static THREETWIST2 = 22
 }
 
+// Die Factory Klasse zum Erstellen der Knoten.
 export class KnotFactory {
+  // Eine statische Methode, damit nicht jedes Mal eine KnotFactory Instanz erstellt werden muss
+  // die noch nicht mal eigene Daten halten muss.
   static createKnot (p5, maxVectors, radius, knotType) {
-    const options = new CosArguments()
+    const options = new KnotParameters()
     let knot
 
     switch (knotType) {
