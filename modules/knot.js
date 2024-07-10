@@ -216,6 +216,10 @@ export class KnotTypes {
 
 // Die Factory Klasse zum Erstellen der Knoten.
 export class KnotFactory {
+  static createTorusKnot (p5, maxVectors, radius, r0, r, p, px, q, m, nx, ny, phi, k) {
+    return new TorusKnot(p5, maxVectors, radius, r0, r, p, px, q, m, nx, ny, phi, k)
+  }
+
   // Eine statische Methode, damit nicht jedes Mal eine KnotFactory Instanz erstellt werden muss
   // die noch nicht mal eigene Daten halten muss.
   static createKnot (p5, maxVectors, radius, knotType) {

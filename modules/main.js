@@ -17,28 +17,48 @@ const sketch = function (p5) {
 
   // Variablen, die über Slider und Buttons geändert werden können
   let vectors = []
-  const maxVectors = 10000
+  let maxVectors = parseInt(el('#maxVectors').value)
   const sphereRadius = 2.5
   const drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
-  const knotType = KnotTypes.UNKNOT
-  const radius = 200
+  // const knotType = KnotTypes.UNKNOT
+  let radius = parseInt(el('#radius').value)
   const ambientLight = 120 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
 
   // Variablen, die innerhalb der Anwendung geöändert werden
   // let angle = 0
   let knot
+  let animate
+  let prevRadius
+
+  function updateKnot () {
+    maxVectors = parseInt(el('#maxVectors').value)
+    radius = parseInt(el('#radius').value)
+    if (radius !== prevRadius && animate === false) {
+      animate = true
+      knot = KnotFactory.createKnot(p5, maxVectors, radius, KnotTypes.UNKNOT)
+      prevRadius = radius
+    }
+  }
 
   // p5 Funktion, die vor dem Zeichnen aufgerufen wird
   p5.setup = function () {
     const canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.WEBGL)
     canvas.style('z-index', '1')
-    knot = KnotFactory.createKnot(p5, maxVectors, radius, knotType)
+    knot = KnotFactory.createKnot(p5, 10000, 200, KnotTypes.UNKNOT)
+    animate = false
+    prevRadius = 200
   }
 
   // Loop-Funktion, die immer wieder aufgerufen wird
   p5.draw = function () {
     // nur zeichnen, wenn display true ist
     if (!p5.display) return
+    updateKnot()
+
+    if (vectors.length >= maxVectors) {
+      animate = false
+    }
+
     p5.background(255, 0.5)
     // Orbit Controls sind die Mauskontrollen
     p5.orbitControl()
@@ -103,11 +123,16 @@ export const initSliders = () => {
   el('#torus').style.display = 'grid'
   el('#lissajous').style.display = 'none'
   el('#cosstack').style.display = 'none'
+
+  el('#maxVectors').addEventListener('input', () => {
+    el('#maxVectorsValue').innerText = el('#maxVectors').value
+  })
+  el('#radius').addEventListener('input', () => {
+    el('#radiusValue').innerText = el('#radius').value
+  })
 }
 
-export const initKnotList = () => {
-  loadKnots()
-}
+export const initKnotList = () => { loadKnots() }
 
 // Service Worker für die Offline Installation
 export function serviceWorkerAktiv () {

@@ -31,41 +31,142 @@
             <div id="marker"></div>
           </ul>
           <span class="circle-properties">
+            <label class="uilabel" for="maxVectors">Name</label>
+            <input
+              class="text"
+              type="text"
+              id="name"
+              placeholder="Enter a name for the knot"
+            />
             <label class="uilabel" for="maxVectors">Resolution</label>
-            <input class="slider" type="range" id="maxVectors" />
-            <span class="value" id="maxVectorsValue">0</span>
+            <input
+              class="slider"
+              type="range"
+              id="maxVectors"
+              min="100"
+              max="10000"
+              step="100"
+              value="10000"
+            />
+            <span class="value" id="maxVectorsValue">10000</span>
             <label class="uilabel" for="radius">Radius</label>
-            <input class="slider" type="range" id="radius" />
-            <span class="value" id="radiusValue">0</span>
+            <input
+              class="slider"
+              type="range"
+              id="radius"
+              min="50"
+              max="500"
+              step="10"
+              value="200"
+            />
+            <span class="value" id="radiusValue">200</span>
           </span>
           <!-- end of circleProperties -->
           <span class="torus" id="torus">
             <label class="uilabel" for="r0">r0</label>
-            <input class="slider" type="range" id="r0" />
+            <input
+              class="slider"
+              type="range"
+              id="r0"
+              min="0"
+              max="5"
+              step="0.1"
+              value="0"
+            />
             <span class="value" id="r0Value">0</span>
             <label class="uilabel" for="r">r</label>
-            <input class="slider" type="range" id="r" />
+            <input
+              class="slider"
+              type="range"
+              id="r"
+              min="-1"
+              max="1"
+              step="0.01"
+              value="0"
+            />
             <span class="value" id="rValue">0</span>
             <label class="uilabel" for="p">p</label>
-            <input class="slider" type="range" id="p" />
+            <input
+              class="slider"
+              type="range"
+              id="p"
+              min="0"
+              max="10"
+              value="0"
+            />
             <span class="value" id="pValue">0</span>
-            <label class="uilabel" for="q">q</label>
-            <input class="slider" type="range" id="q" />
-            <span class="value" id="qValue">0</span>
-            <label class="uilabel" for="m">m</label>
-            <input class="slider" type="range" id="m" />
-            <span class="value" id="mValue">0</span>
             <label class="uilabel" for="px">px</label>
-            <input class="slider" type="range" id="px" />
+            <input
+              class="slider"
+              type="range"
+              id="px"
+              min="0"
+              max="1"
+              value="0"
+              step="1"
+            />
             <span class="value" id="pxValue">0</span>
+            <label class="uilabel" for="q">q</label>
+            <input
+              class="slider"
+              type="range"
+              id="q"
+              min="0"
+              max="10"
+              value="1"
+            />
+            <span class="value" id="qValue">1</span>
+            <label class="uilabel" for="m">m</label>
+            <input
+              class="slider"
+              type="range"
+              id="m"
+              min="0"
+              max="1"
+              value="0"
+              step="1"
+            />
+            <span class="value" id="mValue">0</span>
             <label class="uilabel" for="nx">nx</label>
-            <input class="slider" type="range" id="nx" />
-            <span class="value" id="nxValue">0</span>
+            <input
+              class="slider"
+              type="range"
+              id="nx"
+              min="0"
+              max="5"
+              value="1"
+            />
+            <span class="value" id="nxValue">1</span>
             <label class="uilabel" for="ny">ny</label>
-            <input class="slider" type="range" id="ny" />
-            <span class="value" id="nyValue">0</span>
+            <input
+              class="slider"
+              type="range"
+              id="ny"
+              min="0"
+              max="5"
+              value="1"
+            />
+            <span class="value" id="nyValue">1</span>
+            <label class="uilabel" for="phi">phi</label>
+            <input
+              class="slider"
+              type="range"
+              id="phi"
+              min="0"
+              max="2"
+              value="0"
+              step="1"
+            />
+            <span class="value" id="phiValue">0</span>
             <label class="uilabel" for="trefoilK">k</label>
-            <input class="slider" type="range" id="trefoilK" />
+            <input
+              class="slider"
+              type="range"
+              id="trefoilK"
+              min="0"
+              max="5"
+              value="0"
+            />
             <span class="value" id="kValue">0</span>
           </span>
           <!-- end of torus -->
@@ -167,6 +268,7 @@
             <span class="value" id="nx0Value">0</span>
           </span>
           <!-- end of cosstack -->
+          <div class="btn save-button"><a href="#">Save</a></div>
         </span>
         <!-- end of container -->
       </div>
@@ -176,7 +278,6 @@
       <div class="right-box">
         <div class="container">
           <h2>List</h2>
-          <div class="btn save-button"><a href="#">Save</a></div>
           <div class="btn add-button"><a href="#">Install</a></div>
         </div>
         <!-- end of container -->
