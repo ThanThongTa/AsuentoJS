@@ -7,6 +7,6 @@ displaySketch()
 // serviceWorkerAktiv()
 // addButton()
 
-document.querySelector('#torus').style.display = 'block'
+document.querySelector('#torus').style.display = 'grid'
 document.querySelector('#lissajous').style.display = 'none'
 document.querySelector('#cosstack').style.display = 'none'

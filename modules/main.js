@@ -16,11 +16,10 @@ const sketch = function (p5) {
   let vectors = []
   const maxVectors = 10000
   const sphereRadius = 2.5
-  const materialAlpha = 0.5
   const drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
   const knotType = KnotTypes.UNKNOT
-  const radius = 50
-  const ambientLight = 128 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
+  const radius = 200
+  const ambientLight = 120 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
 
   // Variablen, die innerhalb der Anwendung geöändert werden
   // let angle = 0
@@ -28,7 +27,8 @@ const sketch = function (p5) {
 
   // p5 Funktion, die vor dem Zeichnen aufgerufen wird
   p5.setup = function () {
-    p5.createCanvas(400, 400, p5.WEBGL)
+    const canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.WEBGL)
+    canvas.style('z-index', '1')
     knot = KnotFactory.createKnot(p5, maxVectors, radius, knotType)
   }
 
@@ -36,11 +36,11 @@ const sketch = function (p5) {
   p5.draw = function () {
     // nur zeichnen, wenn display true ist
     if (!p5.display) return
-    p5.background(255, 25)
+    p5.background(255, 0.5)
     // Orbit Controls sind die Mauskontrollen
     p5.orbitControl()
     // Licht von überall
-    p5.ambientLight(ambientLight)
+    p5.ambientLight(ambientLight, ambientLight, ambientLight)
 
     // Kugeln berechnen
     for (let i = 0; i < drawSpeed; i++) {
@@ -56,7 +56,8 @@ const sketch = function (p5) {
       // in WebGL 3D müssen wir über translate zu dem Punkt, an dem wir die Kugel zeichnen wollen
       p5.translate(v.x, v.y, v.z)
       // Die Kugel braucht ein Material. Emissive bedeutet, dass es Licht ausstrahlt
-      p5.emissiveMaterial(v.x, v.y, v.z, materialAlpha)
+      p5.emissiveMaterial(v.x, v.y, v.z)
+      // p5.normalMaterial()
       // normales Material wird nicht von Licht beeinflusst
       // p5.normalMaterial()
       p5.sphere(sphereRadius)
