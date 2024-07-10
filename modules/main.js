@@ -17,8 +17,8 @@ const sketch = function (p5) {
 
   // Variablen, die über Slider und Buttons geändert werden können
   let vectors = []
-  const sphereRadius = 2.5
-  const drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
+  let sphereRadius = 2.5
+  let drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
   // const knotType = KnotTypes.UNKNOT
   const ambientLight = 120 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
 
@@ -104,6 +104,8 @@ const sketch = function (p5) {
     // nur zeichnen, wenn display true ist
     if (!p5.display) return
     knot = updateKnot()
+    drawSpeed = parseInt(el('#drawSpeed').value)
+    sphereRadius = parseInt(el('#sradius').value)
 
     if (vectors.length >= current.maxVectors) {
       animate = false
@@ -179,6 +181,12 @@ export const initSliders = () => {
   })
   el('#radius').addEventListener('input', () => {
     el('#radiusValue').innerText = el('#radius').value
+  })
+  el('#sradius').addEventListener('input', () => {
+    el('#sradiusValue').innerText = el('#sradius').value
+  })
+  el('#drawSpeed').addEventListener('input', () => {
+    el('#drawSpeedValue').innerText = el('#drawSpeed').value
   })
   el('#p').addEventListener('input', () => {
     el('#pValue').innerText = el('#p').value
