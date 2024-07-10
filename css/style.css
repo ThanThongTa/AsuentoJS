@@ -323,7 +323,8 @@ h1 {
   color: #fff;
 }
 
-.right-box .container {
+.right-box .container,
+.left-box .container {
   max-height: 500px;
   overflow: auto;
   scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.2);

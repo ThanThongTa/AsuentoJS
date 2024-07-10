@@ -238,7 +238,6 @@ const sketch = function (p5) {
           break
       }
       prev = current
-      console.log(newKnot)
     }
     return newKnot
   }
