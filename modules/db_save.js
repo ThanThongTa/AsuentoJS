@@ -13,6 +13,7 @@ export const saveKnot = () => {
     name: el('#name').value,
     maxVectors: el('#maxVectors').value,
     radius: el('#radius').value,
+    r0: el('#r0').value,
     r: el('#r').value,
     p: el('#p').value,
     px: el('#px').value,

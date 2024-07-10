@@ -31,7 +31,7 @@ export class TorusKnot extends Knot {
   // erstellt die Vektoren und gibt diese als Array zurückgeben
   getVectors () {
     this.vectors.push(this.calcVector())
-    const maxBeta = (4 * this.trefoilK + 2) * this.p5.PI
+    const maxBeta = (4 * this.trefoilK + 2) * this.p5.PI * this.q
 
     // nur eine bestimmte Anzahl an Kugeln zeichnen. Die ältesten werden gelöscht
     if (this.vectors.length > this.maxVectors) this.vectors.shift()
@@ -51,12 +51,13 @@ export class TorusKnot extends Knot {
 
   // Berechnet einen einzelnen Vektor
   calcVector () {
-    let phiValue = this.p * this.m * this.beta
-    if (this.phi === 1) phiValue = 0.6 * this.p5.PI * this.p5.sin(2 * this.p * this.beta)
-    if (this.phi === 2) phiValue = 0.2 * this.p5.PI * this.p5.sin(this.p * this.beta)
-    const x = (this.r0 + this.r * this.p5.cos(this.px + this.p * this.beta)) * this.p5.cos(this.q * this.beta) * this.nx
-    const y = (this.r0 + this.r * this.p5.cos(this.p * this.beta)) * this.p5.sin(this.q * this.beta) * this.ny
-    const z = this.r * this.p5.sin(phiValue)
+    // const mu = this.beta * this.q
+    // const x = this.radius * this.p5.cos(mu) * (1 + this.p5.cos(this.p * mu) / this.q) / 2.0
+    // const y = this.radius * this.p5.sin(mu) * (1 + this.p5.cos(this.p * mu) / this.q) / 2.0
+    // const z = this.radius * this.p5.sin(this.p * mu / this.q) / 2.0
+    const x = this.radius / 2 * (2 + this.p5.cos(this.p * this.beta)) * this.p5.cos(this.q * this.beta)
+    const y = this.radius / 2 * (2 + this.p5.cos(this.p * this.beta)) * this.p5.sin(this.q * this.beta)
+    const z = this.radius / 2 * this.p5.sin(this.m * this.beta)
     return this.p5.createVector(x, y, z)
   }
 }
@@ -216,8 +217,8 @@ export class KnotTypes {
 
 // Die Factory Klasse zum Erstellen der Knoten.
 export class KnotFactory {
-  static createTorusKnot (p5, maxVectors, radius, r0, r, p, px, q, m, nx, ny, phi, k) {
-    return new TorusKnot(p5, maxVectors, radius, r0, r, p, px, q, m, nx, ny, phi, k)
+  static createTorusKnot (p5, maxVectors, radius, r, p, px, q, m, nx, ny, phi, k) {
+    return new TorusKnot(p5, maxVectors, radius, r, p, px, q, nx, ny, m, phi, k)
   }
 
   // Eine statische Methode, damit nicht jedes Mal eine KnotFactory Instanz erstellt werden muss

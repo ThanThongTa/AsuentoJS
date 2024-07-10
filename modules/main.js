@@ -17,27 +17,77 @@ const sketch = function (p5) {
 
   // Variablen, die über Slider und Buttons geändert werden können
   let vectors = []
-  let maxVectors = parseInt(el('#maxVectors').value)
   const sphereRadius = 2.5
   const drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
   // const knotType = KnotTypes.UNKNOT
-  let radius = parseInt(el('#radius').value)
   const ambientLight = 120 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
 
   // Variablen, die innerhalb der Anwendung geöändert werden
   // let angle = 0
   let knot
   let animate
-  let prevRadius
+  let prev = {}
+  let current = {}
+
+  function getCurrentValues () {
+    const vals = {
+      name: el('#name').value,
+      maxVectors: parseInt(el('#maxVectors').value),
+      radius: parseInt(el('#radius').value),
+      r: 0,
+      p: parseInt(el('#p').value),
+      px: 0,
+      q: parseInt(el('#q').value),
+      nx: 1,
+      ny: 1,
+      m: parseInt(el('#m').value),
+      phi: 0,
+      k: parseInt(el('#trefoilK').value)
+    }
+    return vals
+  }
+
+  function areKnotsEqual (knot1, knot2) {
+    return (
+      knot1.maxVectors === knot2.maxVectors &&
+      knot1.radius === knot2.radius &&
+      knot1.r0 === knot2.r0 &&
+      knot1.r === knot2.r &&
+      knot1.p === knot2.p &&
+      knot1.px === knot2.px &&
+      knot1.q === knot2.q &&
+      knot1.nx === knot2.nx &&
+      knot1.ny === knot2.ny &&
+      knot1.m === knot2.m &&
+      knot1.phi === knot2.phi &&
+      knot1.k === knot2.k
+    )
+  }
 
   function updateKnot () {
-    maxVectors = parseInt(el('#maxVectors').value)
-    radius = parseInt(el('#radius').value)
-    if (radius !== prevRadius && animate === false) {
+    current = getCurrentValues()
+    let newKnot = knot
+    if (!areKnotsEqual(current, prev) && animate === false) {
+      console.log(prev, current)
       animate = true
-      knot = KnotFactory.createKnot(p5, maxVectors, radius, KnotTypes.UNKNOT)
-      prevRadius = radius
+      newKnot = KnotFactory.createTorusKnot(
+        p5,
+        current.maxVectors,
+        current.radius,
+        current.r,
+        current.p,
+        current.px,
+        current.q,
+        current.m,
+        current.nx,
+        current.ny,
+        current.phi,
+        current.k
+      )
+      prev = current
+      console.log(newKnot)
     }
+    return newKnot
   }
 
   // p5 Funktion, die vor dem Zeichnen aufgerufen wird
@@ -46,16 +96,16 @@ const sketch = function (p5) {
     canvas.style('z-index', '1')
     knot = KnotFactory.createKnot(p5, 10000, 200, KnotTypes.UNKNOT)
     animate = false
-    prevRadius = 200
+    prev = getCurrentValues()
   }
 
   // Loop-Funktion, die immer wieder aufgerufen wird
   p5.draw = function () {
     // nur zeichnen, wenn display true ist
     if (!p5.display) return
-    updateKnot()
+    knot = updateKnot()
 
-    if (vectors.length >= maxVectors) {
+    if (vectors.length >= current.maxVectors) {
       animate = false
     }
 
@@ -129,6 +179,18 @@ export const initSliders = () => {
   })
   el('#radius').addEventListener('input', () => {
     el('#radiusValue').innerText = el('#radius').value
+  })
+  el('#p').addEventListener('input', () => {
+    el('#pValue').innerText = el('#p').value
+  })
+  el('#q').addEventListener('input', () => {
+    el('#qValue').innerText = el('#q').value
+  })
+  el('#m').addEventListener('input', () => {
+    el('#mValue').innerText = el('#m').value
+  })
+  el('#trefoilK').addEventListener('input', () => {
+    el('#kValue').innerText = el('#trefoilK').value
   })
 }
 
