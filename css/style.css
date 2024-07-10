@@ -350,21 +350,6 @@ h1 {
   pointer-events: none;
 }
 
-.inputrow {
-  position: relative;
-  left: 0px;
-  top: 100px;
-  display: block;
-  width: 400px;
-  border: 1px solid #fff;
-}
-
-#torus .inputrow {
-  position: relative;
-  left: 0px;
-  top: 120px;
-}
-
 .left-box .circle-properties {
   display: grid;
   margin-left: 25px;
@@ -381,7 +366,9 @@ h1 {
 }
 
 .left-box .circle-properties .uilabel,
-.left-box .torus .uilabel {
+.left-box .torus .uilabel,
+.left-box .cosstack .uilabel,
+.left-box .lissajous .uilabel {
   width: 2fr;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -389,14 +376,18 @@ h1 {
 }
 
 .left-box .circle-properties .slider,
-.left-box .torus .slider {
+.left-box .torus .slider,
+.left-box .cosstack .slider,
+.left-box .lissajous .slider {
   width: 2fr;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
 .left-box .circle-properties .value,
-.left-box .torus .value {
+.left-box .torus .value,
+.left-box .cosstack .value,
+.left-box .lissajous .value {
   width: 50px;
   margin-left: 5px;
   margin-top: 5px;
@@ -406,7 +397,9 @@ h1 {
   font-size: 14px;
 }
 
-.left-box .torus {
+.left-box .torus,
+.left-box .cosstack,
+.left-box .lissajous {
   display: grid;
   grid-template-columns: 2fr 4fr 1fr;
   margin-left: 30px;

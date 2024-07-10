@@ -98,9 +98,9 @@ export class LissaKnot extends Knot {
 
   // berechnet einen einzelnen Vektor
   calcVector () {
-    const x = this.p5.cos(this.nx * this.beta + this.bx)
-    const y = this.p5.cos(this.ny * this.beta + this.by)
-    const z = this.p5.cos(this.nz * this.beta + this.bz) + this.p5.cos(this.nz2 * this.beta)
+    const x = this.radius * this.p5.cos(this.nx * this.beta + this.bx)
+    const y = this.radius * this.p5.cos(this.ny * this.beta + this.by)
+    const z = this.radius * (this.p5.cos(this.nz * this.beta + this.bz) + this.p5.cos(this.nz2 * this.beta))
     return this.p5.createVector(x, y, z)
   }
 }
@@ -219,6 +219,14 @@ export class KnotTypes {
 export class KnotFactory {
   static createTorusKnot (p5, maxVectors, radius, r, p, px, q, m, nx, ny, phi, k) {
     return new TorusKnot(p5, maxVectors, radius, r, p, px, q, nx, ny, m, phi, k)
+  }
+
+  static createLissajousKnot (p5, maxVectors, radius, nx, ny, nz, bx, by, bz, nx2) {
+    return new LissaKnot(p5, maxVectors, radius, nx, ny, nz, bx, by, bz, nx2)
+  }
+
+  static createCosstackKnot (p5, maxVectors, radius, options) {
+    return new CosStackKnot(p5, maxVectors, radius, options)
   }
 
   // Eine statische Methode, damit nicht jedes Mal eine KnotFactory Instanz erstellt werden muss
