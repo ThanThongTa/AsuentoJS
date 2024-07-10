@@ -7,6 +7,9 @@
 
 /* global p5 */
 import { KnotFactory, KnotTypes } from './knot.js'
+import { loadKnots } from './db_read.js'
+import { saveKnot } from './db_save.js'
+import { el } from './lib.js'
 
 const sketch = function (p5) {
   // Variablen, die über Funktionen von außen geändert werden können
@@ -80,14 +83,30 @@ export const initButtons = () => {
   const marker = document.querySelector('#marker')
   const items = document.querySelectorAll('ul li a')
 
+  // start the marker on the torus item
+  marker.style.left = '0px'
+  marker.style.width = '79px'
+
   function Indicator (e) {
     marker.style.left = e.offsetLeft + 'px'
     marker.style.width = e.offsetWidth + 'px'
   }
 
   items.forEach(link => {
-    link.addEventListener('mousemove', (e) => Indicator(e.target))
+    link.addEventListener('mousemove', e => Indicator(e.target))
   })
+
+  el('.save-button').addEventListener('click', saveKnot)
+}
+
+export const initSliders = () => {
+  el('#torus').style.display = 'grid'
+  el('#lissajous').style.display = 'none'
+  el('#cosstack').style.display = 'none'
+}
+
+export const initKnotList = () => {
+  loadKnots()
 }
 
 // Service Worker für die Offline Installation
