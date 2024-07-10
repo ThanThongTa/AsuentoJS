@@ -158,6 +158,7 @@ section .color:nth-child(3) {
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 4;
 }
 
 .container .btn {
@@ -275,37 +276,6 @@ section .color:nth-child(3) {
   box-shadow: 0 0 5px #1eff45, 0 0 15px #1eff45, 0 0 30px #1eff45, 0 0 60px #1eff45;
 }
 
-.left-box {
-  position: absolute;
-  top: 2%;
-  left: 5%;
-  color: #fff;
-  display: grid;
-}
-
-.right-box {
-  position: absolute;
-  top: 2%;
-  right: 5%;
-  color: #fff;
-}
-
-.topcontainer {
-  width: 400px;
-  min-height: 50px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  pointer-events: none;
-}
-
 canvas {
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -336,6 +306,37 @@ h1 {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   color: #fff;
+}
+
+.left-box {
+  position: absolute;
+  top: 2%;
+  left: 5%;
+  color: #fff;
+  display: grid;
+}
+
+.right-box {
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  color: #fff;
+}
+
+.topcontainer {
+  width: 400px;
+  min-height: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
 }
 
 .inputrow {
@@ -390,6 +391,17 @@ h1 {
   margin-left: 40px;
   margin-top: 20px;
   transition: 0.5s;
+}
+
+.right-box .save-button {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+}
+
+.right-box .add-button {
+  position: absolute;
+  top: 70px;
 }
 
 .left-box,
