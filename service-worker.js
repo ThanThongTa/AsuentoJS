@@ -26,7 +26,8 @@ const cacheFiles = [
   '/modules/install.js',
   '/modules/knot.js',
   '/modules/lib.js',
-  '/modules/main.js'
+  '/modules/main.js',
+  '/modules/ui.js'
 ]
 
 self.addEventListener('install', function (e) {
