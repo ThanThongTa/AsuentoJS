@@ -439,6 +439,7 @@ h1 {
   position: sticky;
   top: 60px;
   left: 270px;
+  translate: 0 -30px;
 }
 
 .right-box .knot {
@@ -451,4 +452,34 @@ h1 {
 .right.box,
 .topcontainer {
   z-index: 2;
+}
+
+.knotlist .knot {
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr;
+}
+
+.knotlist .knot .knotname {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  padding-left: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.knotlist .knot .loader {
+  background-color: rgba(0, 255, 255, 0.2);
+  cursor: pointer;
+  padding: 10px;
+}
+
+.knotlist .knot .delete {
+  background-color: rgba(255, 0, 0, 0.2);
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  cursor: pointer;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 10px;
 }

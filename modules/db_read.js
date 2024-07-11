@@ -24,16 +24,16 @@ function renderKnotList (dbData) {
     knotName.innerText = element.name
     row.append(knotName)
 
-    const knotLoad = create('button')
-    knotLoad.className = 'loader'
+    const knotLoad = create('div')
+    knotLoad.className = 'smlbtn loader'
     knotLoad.innerText = 'Load'
     knotLoad.addEventListener('click', () => {
       loadKnot(element)
     })
     row.append(knotLoad)
 
-    const knotDelete = create('button')
-    knotDelete.className = 'delete'
+    const knotDelete = create('div')
+    knotDelete.className = 'smlbtn delete'
     knotDelete.innerText = 'X'
     knotDelete.addEventListener('click', () => {
       deleteKnot(element)
