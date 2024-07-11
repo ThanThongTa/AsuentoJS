@@ -1,5 +1,4 @@
 import { db } from './db.js'
-import { KnotParameters } from './knot.js'
 import { el } from './lib.js'
 import { globals } from './main.js'
 
@@ -101,9 +100,8 @@ const saveCosstack = () => {
 
 // fügt einige Knoten in die Datenbank hinzu
 export const initDB = () => {
-  // erstellt erst mal eine Liste von Knoten
-  const list = []
-  list.push({
+  // erstellt erst mal eine Liste von Standard Knoten
+  const list = [{
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Unknot Torus',
@@ -118,8 +116,7 @@ export const initDB = () => {
     m: 1,
     phi: 0,
     k: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Torus',
@@ -134,8 +131,7 @@ export const initDB = () => {
     m: 1,
     phi: 1,
     k: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Knot5',
@@ -150,8 +146,7 @@ export const initDB = () => {
     m: 1,
     phi: 2,
     k: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Trefoil',
@@ -166,8 +161,7 @@ export const initDB = () => {
     m: 3,
     phi: 0,
     k: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Trefoil2',
@@ -182,8 +176,7 @@ export const initDB = () => {
     m: 1,
     phi: 0,
     k: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Trefoil4',
@@ -198,8 +191,7 @@ export const initDB = () => {
     m: 1,
     phi: 0,
     k: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Torus3',
@@ -214,8 +206,7 @@ export const initDB = () => {
     m: 1,
     phi: 0,
     k: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Cinquefoil1',
@@ -230,8 +221,7 @@ export const initDB = () => {
     m: 1,
     phi: 0,
     k: 1
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Cinquefoil2',
@@ -246,8 +236,7 @@ export const initDB = () => {
     m: 1,
     phi: 0,
     k: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: 'Eight',
@@ -262,8 +251,7 @@ export const initDB = () => {
     m: 2,
     phi: 0,
     k: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'lissajous',
     name: 'Trefoil3',
@@ -276,8 +264,7 @@ export const initDB = () => {
     by: 0.15,
     bz: 1,
     nz2: 5
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'lissajous',
     name: 'Eight3',
@@ -290,8 +277,7 @@ export const initDB = () => {
     by: 0.15,
     bz: 1,
     nz2: 5
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'lissajous',
     name: 'ThreeTwist',
@@ -304,8 +290,7 @@ export const initDB = () => {
     by: 0.2,
     bz: 0,
     nz2: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'lissajous',
     name: 'ThreeTwist2',
@@ -318,8 +303,7 @@ export const initDB = () => {
     by: 0.4,
     bz: 0,
     nz2: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'lissajous',
     name: 'Stevedore',
@@ -332,8 +316,7 @@ export const initDB = () => {
     by: 0.2,
     bz: 0,
     nz2: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'lissajous',
     name: 'Granny2',
@@ -346,8 +329,7 @@ export const initDB = () => {
     by: 1.0,
     bz: 0,
     nz2: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'lissajous',
     name: 'Carrick',
@@ -360,8 +342,7 @@ export const initDB = () => {
     by: 0.7,
     bz: 0,
     nz2: 0
-  })
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'lissajous',
     name: 'Lissajous5',
@@ -374,85 +355,71 @@ export const initDB = () => {
     by: 1.10,
     bz: 0,
     nz2: 0
-  })
-  let options = new KnotParameters()
-  options.xc1 = 10
-  options.xc2 = 1
-  options.xc3 = 10
-  options.xc4 = 1
-  options.ys1 = 6
-  options.ys3 = 10
-  options.zs3 = 4
-  options.zs4 = 4
-  options.zoffset = 1
-  list.push({
-    id: Math.floor(Math.random() * 1000000) + 1000000,
-    type: 'cosstack',
-    name: 'Eight5',
-    maxVectors: 10000,
-    radius: 200,
-    options
-  })
-  options = new KnotParameters()
-  options.xc1 = 4 / 3
-  options.xc3 = 2
-  options.yc1 = 4 / 3
-  options.yc3 = 2
-  options.zs2 = 0.5
-  options.zs4 = 1
-  list.push({
-    id: Math.floor(Math.random() * 1000000) + 1000000,
-    type: 'cosstack',
-    name: 'Clover',
-    maxVectors: 10000,
-    radius: 200,
-    options
-  })
-  options = new KnotParameters()
-  options.xc1 = -22
-  options.xs1 = -128
-  options.xc3 = -44
-  options.xs3 = -78
-  options.yc2 = -10
-  options.ys2 = -27
-  options.ys4 = 38
-  options.yc4 = 46
-  options.zs3 = 70
-  options.zc3 = -40
-  list.push({
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'cosstack',
     name: 'Granny',
     maxVectors: 10000,
     radius: 200,
-    options
-  })
-  options = new KnotParameters()
-  options.xc1 = 41
-  options.xs1 = -18
-  options.xc2 = -83
-  options.xs2 = -83
-  options.xc3 = -11
-  options.xs3 = 27
-  options.yc1 = 36
-  options.ys1 = 27
-  options.yc2 = -113
-  options.ys2 = 30
-  options.yc3 = 11
-  options.ys3 = 27
-  options.zs1 = 45
-  options.zc2 = -30
-  options.zs2 = 113
-  options.zc3 = -11
-  options.zs3 = 27
-  list.push({
+    options: {
+      xc1: -22,
+      xs1: -128,
+      xc2: 0,
+      xs2: 0,
+      xc3: -44,
+      xs3: -78,
+      xc4: 0,
+      xs4: 0,
+      yc1: 0,
+      ys1: 0,
+      yc2: -10,
+      ys2: -27,
+      yc3: 0,
+      ys3: 0,
+      ys4: 38,
+      yc4: 46,
+      zc1: 0,
+      zs1: 0,
+      zc2: 0,
+      zs2: 0,
+      zc3: -40,
+      zs3: 70,
+      zc4: 0,
+      zs4: 0
+    }
+  }, {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'cosstack',
     name: 'Septafoil',
     maxVectors: 10000,
     radius: 200,
-    options
-  })
+    options: {
+      xc1: 41,
+      xs1: -18,
+      xc2: -83,
+      xs2: -83,
+      xc3: -11,
+      xs3: 27,
+      xc4: 0,
+      xs4: 0,
+      yc1: 36,
+      ys1: 27,
+      yc2: -113,
+      ys2: 30,
+      yc3: 11,
+      ys3: 27,
+      yc4: 0,
+      ys4: 0,
+      zc1: 0,
+      zs1: 45,
+      zc2: -30,
+      zs2: 113,
+      zc3: -11,
+      zs3: 27,
+      zc4: 0,
+      zs4: 0
+    }
+  }]
 
   // geht die Liste durch und fügt den Knoten der Datenbank hinzu
   list.forEach(knot => db.update(knot))

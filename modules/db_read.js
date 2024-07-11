@@ -65,6 +65,10 @@ function loadKnot (knot) {
       el('#q').value = knot.q
       el('#m').value = knot.m
       el('#trefoilK').value = knot.k
+      el('#pValue').innerText = knot.p
+      el('#qValue').innerText = knot.q
+      el('#mValue').innerText = knot.m
+      el('#kValue').innerText = knot.k
       marker.style.left = '0px'
       marker.style.width = '79px'
       el('#torus').classList.add('show')
@@ -79,6 +83,13 @@ function loadKnot (knot) {
       el('#by').value = knot.by
       el('#bz').value = knot.bz
       el('#nz2').value = knot.nz2
+      el('#nxValue').innerText = knot.nx
+      el('#nyValue').innerText = knot.ny
+      el('#nzValue').innerText = knot.nz
+      el('#bxValue').innerText = knot.bx
+      el('#byValue').innerText = knot.by
+      el('#bzValue').innerText = knot.bz
+      el('#nz2Value').innerText = knot.nz2
       marker.style.left = '79px'
       marker.style.width = '107px'
       el('#torus').classList.remove('show')
@@ -111,6 +122,30 @@ function loadKnot (knot) {
       el('#zs2').value = knot.options.zs2
       el('#zs3').value = knot.options.zs3
       el('#zs4').value = knot.options.zs4
+      el('#xc1Value').innerText = knot.options.xc1
+      el('#xc2Value').innerText = knot.options.xc2
+      el('#xc3Value').innerText = knot.options.xc3
+      el('#xc4Value').innerText = knot.options.xc4
+      el('#yc1Value').innerText = knot.options.yc1
+      el('#yc2Value').innerText = knot.options.yc2
+      el('#yc3Value').innerText = knot.options.yc3
+      el('#yc4Value').innerText = knot.options.yc4
+      el('#zc1Value').innerText = knot.options.zc1
+      el('#zc2Value').innerText = knot.options.zc2
+      el('#zc3Value').innerText = knot.options.zc3
+      el('#zc4Value').innerText = knot.options.zc4
+      el('#xs1Value').innerText = knot.options.xs1
+      el('#xs2Value').innerText = knot.options.xs2
+      el('#xs3Value').innerText = knot.options.xs3
+      el('#xs4Value').innerText = knot.options.xs4
+      el('#ys1Value').innerText = knot.options.ys1
+      el('#ys2Value').innerText = knot.options.ys2
+      el('#ys3Value').innerText = knot.options.ys3
+      el('#ys4Value').innerText = knot.options.ys4
+      el('#zs1Value').innerText = knot.options.zs1
+      el('#zs2Value').innerText = knot.options.zs2
+      el('#zs3Value').innerText = knot.options.zs3
+      el('#zs4Value').innerText = knot.options.zs4
       marker.style.left = '186px'
       marker.style.width = '90px'
       el('#torus').classList.remove('show')
