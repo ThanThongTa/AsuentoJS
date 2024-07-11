@@ -9,10 +9,14 @@ export class UserInterface {
     this.prev = {}
     this.current = {}
     this.p5 = p5
+    this.drawSpeed = parseInt(el('#drawSpeed').value)
+    this.sphereRadius = parseInt(el('#sradius').value)
   }
 
   // ermittelt die Werte für den aktuellen Knoten
   getCurrentValues = function () {
+    this.drawSpeed = parseInt(el('#drawSpeed').value)
+    this.sphereRadius = parseInt(el('#sradius').value)
     let vals
     switch (globals.knotType) { // knotType
       case 'torus':

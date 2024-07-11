@@ -5,7 +5,8 @@ where a user can change and save settings for a mathematically computated 3D kno
 
 Anleitung für Mac Development Machines, um ein Zertifikat zu erstellen,
 und dem self signed certificate zu vertrauen.
-Kein apache, MAMP, XAMPP, nodeJS erforderlich.
+Kein apache, MAMP, XAMPP, nodeJS oder sonstigen SSL Server erforderlich.
+Es muss nur ein Zertifikat vorhanden sein, dem vertraut werden soll.
 
 Benötigt:
 Terminal-Zugriff / CommandLine

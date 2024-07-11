@@ -7,7 +7,6 @@
 
 /* global p5 */
 import { KnotFactory } from './knot.js'
-import { el } from './lib.js'
 import { UserInterface } from './ui.js'
 
 export const globals = {
@@ -19,13 +18,11 @@ const sketch = function (p5) {
   // Variablen, die über Funktionen von außen geändert werden können
   p5.display = false
 
-  // Variablen, die über Slider und Buttons geändert werden können
-  let vectors = []
-  let sphereRadius = 2.5
-  let drawSpeed = 300 // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
-  const ambientLight = 120 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
-
   // Variablen, die innerhalb der Anwendung geöändert werden
+  const ambientLight = 120 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
+  let vectors = []
+  let sphereRadius
+  let drawSpeed // Anzahl der Kugeln, die gleichzeitig gezeichnet werden
   let knot
   let UI
 
@@ -44,8 +41,8 @@ const sketch = function (p5) {
     // nur zeichnen, wenn display true ist
     if (!p5.display) return
     knot = UI.updateKnot(knot)
-    drawSpeed = parseInt(el('#drawSpeed').value)
-    sphereRadius = parseInt(el('#sradius').value)
+    drawSpeed = UI.drawSpeed
+    sphereRadius = UI.sphereRadius
 
     if (vectors.length >= UI.current.maxVectors) {
       globals.animate = false
