@@ -3,6 +3,7 @@ import { KnotParameters } from './knot.js'
 import { el } from './lib.js'
 import { globals } from './main.js'
 
+// speichert den aktuellen Knoten in die Datenbank
 export const saveKnot = () => {
   if (el('#name').value === '') {
     console.log('no name')
@@ -22,6 +23,7 @@ export const saveKnot = () => {
   }
 }
 
+// speichert den aktuellen Knoten als Torus in die Datenbank
 const saveTorus = () => {
   const knot = {
     id: Math.floor(Math.random() * 1000000) + 1000000,
@@ -37,6 +39,7 @@ const saveTorus = () => {
   db.update(knot)
 }
 
+// speichert den aktuellen Knoten als Lissajous in die Datenbank
 const saveLissajous = () => {
   const knot = {
     id: Math.floor(Math.random() * 1000000) + 1000000,
@@ -55,6 +58,7 @@ const saveLissajous = () => {
   db.update(knot)
 }
 
+// speichert den aktuellen Knoten als Cosstack in die Datenbank
 const saveCosstack = () => {
   const knot = {
     id: Math.floor(Math.random() * 1000000) + 1000000,
@@ -95,7 +99,9 @@ const saveCosstack = () => {
   db.update(knot)
 }
 
+// fügt einige Knoten in die Datenbank hinzu
 export const initDB = () => {
+  // erstellt erst mal eine Liste von Knoten
   const list = []
   list.push({
     id: Math.floor(Math.random() * 1000000) + 1000000,
@@ -448,5 +454,6 @@ export const initDB = () => {
     options
   })
 
+  // geht die Liste durch und fügt den Knoten der Datenbank hinzu
   list.forEach(knot => db.update(knot))
 }

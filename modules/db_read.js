@@ -3,55 +3,62 @@ import { create, el } from './lib.js'
 import { initDB } from './db_save.js'
 import { globals } from './main.js'
 
+// lädt die Liste der Knoten aus der Datenbank und erstellt das entsprechende HTML
 export const loadKnots = async () => {
   const listArea = document.querySelector('#knotlist')
+  // Knotenliste leeren
   listArea.innerHTML = ''
+  // Datenbank Aufruf
   const dbData = await db.readAll()
-  if (!dbData || !dbData.length) {
-    initDB()
-  }
+  // falls noch keine Daten in der Liste sind, werden einige Standardknoten hinzugefügt
+  if (!dbData || !dbData.length) { initDB() }
+  // neue KNotenliste erstellen
   listArea.append(renderKnotList(dbData))
 }
 
+// Erstellt das HTML für eine neue Knotenliste
 function renderKnotList (dbData) {
+  // ein Wrapper für die komplette Liste
   const wrapper = create('div')
   dbData.forEach(element => {
+    // ein Wrapper für einen einzelnen Knoten
     const row = create('div')
     row.className = 'knot'
     wrapper.append(row)
 
+    // Der Name des Knotens in einem Span
     const knotName = create('span')
     knotName.className = 'knotname'
     knotName.innerText = element.name
     row.append(knotName)
 
+    // Der Button zum Laden des Knotens
     const knotLoad = create('div')
     knotLoad.className = 'smlbtn loader'
     knotLoad.innerText = 'Load'
-    knotLoad.addEventListener('click', () => {
-      loadKnot(element)
-    })
+    knotLoad.addEventListener('click', () => { loadKnot(element) })
     row.append(knotLoad)
 
+    // der Button zum Löschen des Knotens
     const knotDelete = create('div')
     knotDelete.className = 'smlbtn delete'
     knotDelete.innerText = 'X'
-    knotDelete.addEventListener('click', () => {
-      deleteKnot(element)
-    })
+    knotDelete.addEventListener('click', () => { deleteKnot(element) })
     row.append(knotDelete)
   })
   return wrapper
 }
 
+// diese Funktion wird beim Laden eines Knotens aufgerufen
 function loadKnot (knot) {
-  console.log(knot)
   el('#name').value = knot.name
   el('#maxVectors').value = knot.maxVectors
   el('#radius').value = knot.radius
   globals.knotType = knot.type
   const marker = document.querySelector('#marker')
 
+  // setzt die Werte in den Slidern entsprechend des Knotentyps
+  // setzt auch den Marker zum entsprechenden Knotentyp
   switch (globals.knotType) {
     case 'torus':
       el('#p').value = knot.p
@@ -113,6 +120,7 @@ function loadKnot (knot) {
   }
 }
 
+// löscht einen Knoten aus der Datenbank und lädt die Liste neu
 function deleteKnot (knot) {
   db.deleteItem(knot.id)
   loadKnots()

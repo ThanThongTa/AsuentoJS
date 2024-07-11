@@ -51,10 +51,6 @@ export class TorusKnot extends Knot {
 
   // Berechnet einen einzelnen Vektor
   calcVector () {
-    // const mu = this.beta * this.q
-    // const x = this.radius * this.p5.cos(mu) * (1 + this.p5.cos(this.p * mu) / this.q) / 2.0
-    // const y = this.radius * this.p5.sin(mu) * (1 + this.p5.cos(this.p * mu) / this.q) / 2.0
-    // const z = this.radius * this.p5.sin(this.p * mu / this.q) / 2.0
     const x = this.radius / 2 * (2 + this.p5.cos(this.p * this.beta)) * this.p5.cos(this.q * this.beta)
     const y = this.radius / 2 * (2 + this.p5.cos(this.p * this.beta)) * this.p5.sin(this.q * this.beta)
     const z = this.radius / 2 * this.p5.sin(this.m * this.beta)

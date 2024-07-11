@@ -27,7 +27,6 @@ const sketch = function (p5) {
   const ambientLight = 120 // Werte von 0 bis 255. 0 ist schwarz, 255 ist weiss
 
   // Variablen, die innerhalb der Anwendung geöändert werden
-  // let angle = 0
   let knot
   let animate
   let prev = {}
@@ -288,9 +287,6 @@ const sketch = function (p5) {
       p5.translate(v.x, v.y, v.z)
       // Die Kugel braucht ein Material. Emissive bedeutet, dass es Licht ausstrahlt
       p5.emissiveMaterial(v.x, v.y, v.z)
-      // p5.normalMaterial()
-      // normales Material wird nicht von Licht beeinflusst
-      // p5.normalMaterial()
       p5.sphere(sphereRadius)
       // Mit Pop holen wir den gespeicherten Zustand bestimmter Werte zurück
       p5.pop()
@@ -327,6 +323,7 @@ const unselectIndicator = (e) => {
   }
 }
 
+// initiert die Buttons für den Knotentypen und den Speichern-Button
 export const initButtons = () => {
   // für den Marker des Knotentypens
   const marker = document.querySelector('#marker')
