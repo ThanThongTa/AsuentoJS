@@ -411,6 +411,7 @@ h1 {
   transition-property: display opacity;
   transition-duration: 0.5s;
   transition-behavior: allow-discrete;
+  transition-timing-function: ease-in-out;
 }
 
 .left-box .torus.show,
@@ -422,6 +423,7 @@ h1 {
   transition-property: display opacity;
   transition-duration: 0.5s;
   transition-behavior: allow-discrete;
+  transition-timing-function: ease-in-out;
   @starting-style {
     opacity: 0;
     translate: 25vw -25vh;
