@@ -19,8 +19,15 @@ const cacheFiles = [
   '/img/icon-512x512.png',
   '/js/app.js',
   '/libraries/p5.min.js',
+  '/modules/db_read.js',
+  '/modules/db_save.js',
+  '/modules/db.js',
+  '/modules/idb-src.min.js',
   '/modules/install.js',
-  '/modules/main.js'
+  '/modules/knot.js',
+  '/modules/lib.js',
+  '/modules/main.js',
+  '/modules/ui.js'
 ]
 
 self.addEventListener('install', function (e) {

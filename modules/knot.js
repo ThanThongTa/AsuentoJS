@@ -51,10 +51,6 @@ export class TorusKnot extends Knot {
 
   // Berechnet einen einzelnen Vektor
   calcVector () {
-    // const mu = this.beta * this.q
-    // const x = this.radius * this.p5.cos(mu) * (1 + this.p5.cos(this.p * mu) / this.q) / 2.0
-    // const y = this.radius * this.p5.sin(mu) * (1 + this.p5.cos(this.p * mu) / this.q) / 2.0
-    // const z = this.radius * this.p5.sin(this.p * mu / this.q) / 2.0
     const x = this.radius / 2 * (2 + this.p5.cos(this.p * this.beta)) * this.p5.cos(this.q * this.beta)
     const y = this.radius / 2 * (2 + this.p5.cos(this.p * this.beta)) * this.p5.sin(this.q * this.beta)
     const z = this.radius / 2 * this.p5.sin(this.m * this.beta)
@@ -189,32 +185,6 @@ export class KnotParameters {
   }
 }
 
-// Eine Art Enum, um die Typen der Knoten zu verwalten
-export class KnotTypes {
-  static UNKNOT = 0
-  static TORUS = 1
-  static EIGHT = 2
-  static TREFOIL = 3
-  static GRANNY = 4
-  static CINQUEFOIL = 5
-  static CLOVER = 6
-  static TREFOIL2 = 7
-  static EIGHTS = 9
-  static THREETWIST = 10
-  static STEVEDORE = 11
-  static GRANNY2 = 12
-  static CARRICK = 13
-  static LISSAJOUS5 = 14
-  static SEPTAFOIL = 15
-  static TREFOIL3 = 16
-  static EIGHT3 = 17
-  static CINQUEFOIL2 = 18
-  static TREFOIL4 = 19
-  static TORUS3 = 20
-  static KNOT5 = 21
-  static THREETWIST2 = 22
-}
-
 // Die Factory Klasse zum Erstellen der Knoten.
 export class KnotFactory {
   static createTorusKnot (p5, maxVectors, radius, r, p, px, q, m, nx, ny, phi, k) {
@@ -227,125 +197,5 @@ export class KnotFactory {
 
   static createCosstackKnot (p5, maxVectors, radius, options) {
     return new CosStackKnot(p5, maxVectors, radius, options)
-  }
-
-  // Eine statische Methode, damit nicht jedes Mal eine KnotFactory Instanz erstellt werden muss
-  // die noch nicht mal eigene Daten halten muss.
-  static createKnot (p5, maxVectors, radius, knotType) {
-    const options = new KnotParameters()
-    let knot
-
-    switch (knotType) {
-      case KnotTypes.TORUS:
-        knot = new TorusKnot(p5, maxVectors, 0.8 * radius, 1.6, 6, 0, 2, 1, 1, 1, 1, 0)
-        break
-      case KnotTypes.KNOT5:
-        knot = new TorusKnot(p5, maxVectors, 0, 0.72, 6, 0, 4, 1, 1, 1, 2, 0)
-        break
-      case KnotTypes.TREFOIL:
-        knot = new TorusKnot(p5, maxVectors, 0, 1, 1, 0, 2, 2, 2, 3, 0, 0)
-        break
-      case KnotTypes.TREFOIL2:
-        knot = new TorusKnot(p5, maxVectors, 2, 1, 3, 0, 1, 1, 1, 1, 0, 0)
-        break
-      case KnotTypes.TREFOIL4:
-        knot = new TorusKnot(p5, maxVectors, 3, 1, 3, 0, 2, 1, 1, 1, 0, 0)
-        break
-      case KnotTypes.TORUS3:
-        knot = new TorusKnot(p5, maxVectors, 3, 1, 4, 0, 3, 1, 1, 1, 0, 0)
-        break
-      case KnotTypes.CINQUEFOIL:
-        knot = new TorusKnot(p5, maxVectors, 2, -1, 2, 0, 1, 0, 0, 1, 0, 1)
-        break
-      case KnotTypes.CINQUEFOIL2:
-        knot = new TorusKnot(p5, maxVectors, 3, 1, 5, 0, 2, 1, 1, 1, 0, 0)
-        break
-      case KnotTypes.EIGHT:
-        knot = new TorusKnot(p5, maxVectors, 2, 1, 2, 0, 3, 1, 1, 2, 0, 0)
-        break
-      case KnotTypes.TREFOIL3:
-        knot = new LissaKnot(p5, maxVectors, radius, 2, 2, 4, 0.8, 0.15, 1, 5)
-        break
-      case KnotTypes.EIGHT3:
-        knot = new LissaKnot(p5, maxVectors, radius, 2, 2, 6, 6, 0.15, 1, 5)
-        break
-      case KnotTypes.THREETWIST:
-        knot = new LissaKnot(p5, maxVectors, radius, 3, 2, 7, 0.7, 0.2, 0, 0)
-        break
-      case KnotTypes.THREETWIST2:
-        knot = new LissaKnot(p5, maxVectors, radius, 3, 2, 7, 1.0, 0.4, 0, 0)
-        break
-      case KnotTypes.STEVEDORE:
-        knot = new LissaKnot(p5, maxVectors, radius, 3, 2, 5, 1.5, 0.2, 0, 0)
-        break
-      case KnotTypes.GRANNY2:
-        knot = new LissaKnot(p5, maxVectors, radius, 3, 5, 7, 0.7, 1.0, 0, 0)
-        break
-      case KnotTypes.CARRICK:
-        knot = new LissaKnot(p5, maxVectors, radius, 3, 4, 7, 0.1, 0.7, 0, 0)
-        break
-      case KnotTypes.LISSAJOUS5:
-        knot = new LissaKnot(p5, maxVectors, radius, 2, 3, 7, 0.22, 1.10, 0, 0)
-        break
-      case KnotTypes.EIGHTS:
-        options.xc1 = 10
-        options.xc2 = 1
-        options.xc3 = 10
-        options.xc4 = 1
-        options.ys1 = 6
-        options.ys3 = 10
-        options.zs3 = 4
-        options.zs4 = 4
-        options.zoffset = 1
-        knot = new CosStackKnot(p5, maxVectors, radius, options)
-        break
-      case KnotTypes.CLOVER:
-        options.xc1 = 4 / 3
-        options.xc3 = 2
-        options.yc1 = 4 / 3
-        options.yc3 = 2
-        options.zs2 = 0.5
-        options.zs4 = 1
-        knot = new CosStackKnot(p5, maxVectors, radius, options)
-        break
-      case KnotTypes.GRANNY: // COMPOSITE
-        options.xc1 = -22
-        options.xs1 = -128
-        options.xc3 = -44
-        options.xs3 = -78
-        options.yc2 = -10
-        options.ys2 = -27
-        options.ys4 = 38
-        options.yc4 = 46
-        options.zs3 = 70
-        options.zc3 = -40
-        knot = new CosStackKnot(p5, maxVectors, radius, options)
-        break
-      case KnotTypes.SEPTAFOIL:
-        options.xc1 = 41
-        options.xs1 = -18
-        options.xc2 = -83
-        options.xs2 = -83
-        options.xc3 = -11
-        options.xs3 = 27
-        options.yc1 = 36
-        options.ys1 = 27
-        options.yc2 = -113
-        options.ys2 = 30
-        options.yc3 = 11
-        options.ys3 = 27
-        options.zs1 = 45
-        options.zc2 = -30
-        options.zs2 = 113
-        options.zc3 = -11
-        options.zs3 = 27
-        knot = new CosStackKnot(p5, maxVectors, radius, options)
-        break
-      case KnotTypes.UNKNOT:
-      default:
-        knot = new TorusKnot(p5, maxVectors, radius, 0, 0, 0, 1, 1, 1, 1, 0, 0)
-        break
-    }
-    return knot
   }
 }

@@ -41,6 +41,11 @@ ul {
   top: 0px;
 }
 
+.container input {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 25px;
+}
+
 ul li {
   list-style: none;
 }
@@ -61,7 +66,7 @@ ul li a {
   backdrop-filter: blur(15px);
 }
 
-ul li a:before {
+ul li a::before {
   content: '';
   position: absolute;
   top: 0;
@@ -264,6 +269,12 @@ section .color:nth-child(3) {
   box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
 }
 
+.container .btn.save-button::before,
+.container .btn.save-button::after {
+  background: #ff1f71;
+  box-shadow: 0 0 5px #ff1f71, 0 0 15px #ff1f71, 0 0 30px #ff1f71, 0 0 60px #ff1f71;
+}
+
 .container .btn:nth-child(3)::before,
 .container .btn:nth-child(3)::after {
   background: #2bd2ff;
@@ -327,7 +338,7 @@ h1 {
 .left-box .container {
   max-height: 500px;
   overflow: auto;
-  scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.2);
+  scrollbar-color: rgba(43, 210, 255, 0.2) rgba(255, 255, 255, 0.2);
 }
 
 .right-box .container h2 {
@@ -362,7 +373,7 @@ h1 {
 .left-box .circle-properties .text {
   grid-column: span 2;
   border: none;
-  padding-left: 10px;
+  padding-left: 15px;
   margin-right: 30px;
 }
 
@@ -411,7 +422,6 @@ h1 {
   transition-property: display opacity;
   transition-duration: 0.5s;
   transition-behavior: allow-discrete;
-  transition-timing-function: ease-in-out;
 }
 
 .left-box .torus.show,
@@ -423,7 +433,6 @@ h1 {
   transition-property: display opacity;
   transition-duration: 0.5s;
   transition-behavior: allow-discrete;
-  transition-timing-function: ease-in-out;
   @starting-style {
     opacity: 0;
     translate: 25vw -25vh;
@@ -459,29 +468,115 @@ h1 {
 .knotlist .knot {
   display: grid;
   grid-template-columns: 8fr 1fr 1fr;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.01), 0 15px 35px rgba(255, 255, 255, 0.01);
+  color: #fff;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-right: 10px;
+  transition: 0.5s;
+}
+
+.knotlist .knot:hover {
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.8), 0 5px 15px rgba(255, 255, 255, 0.8);
 }
 
 .knotlist .knot .knotname {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  padding-left: 25px;
+  color: #fff;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
+  padding-left: 25px;
+  padding-top: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .knotlist .knot .loader {
-  background-color: rgba(0, 255, 255, 0.2);
+  background: linear-gradient(45deg, rgba(0, 255, 255, 0.2), transparent);
   cursor: pointer;
   padding: 10px;
 }
 
 .knotlist .knot .delete {
-  background-color: rgba(255, 0, 0, 0.2);
+  background: linear-gradient(45deg, transparent, rgba(255, 0, 0, 0.4));
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   cursor: pointer;
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
-  margin-right: 10px;
+}
+
+#alert {
+  position: absolute;
+  top: 200px;
+  left: 550px;
+  width: 25vw;
+  height: 20vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  color: #fff;
+}
+
+#alert::backdrop {
+  background: linear-gradient(45deg, transparent, rgba(255, 0, 0, 0.4));
+}
+
+#alert h3 {
+  width: 22vw;
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+#alert .form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  margin-right: 20px;
+}
+
+#alert .form #knotname {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-left: 10px;
+  height: 30px;
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 16px;
+}
+
+#alert .form #knotname::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+}
+
+#alert .form .button {
+  grid-column: 1 / span 2;
+  color: #fff;
+  height: 30px;
+  margin-top: 10px;
+  width: 95%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }

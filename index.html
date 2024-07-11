@@ -13,154 +13,468 @@
   </head>
 
   <body class="loading">
-    <!-- title header -->
+    <!-- Titel Header -->
     <h1 class="topcontainer">Knot Explorer</h1>
     <section>
-      <!--  colorful rectangles in the background -->
+      <!--  Bunte Vierecke im Hintergrund -->
       <div class="color"></div>
       <div class="color"></div>
       <div class="color"></div>
-      <!-- left box for the Customizing Knot UI-->
+      <!-- left box für die Customizing Knot UI-->
       <div class="left-box">
         <span class="container">
           <h2>GUI</h2>
           <ul>
+            <!-- Knoten-Typen und Marker-->
             <li id="torusItem"><a href="#">Torus</a></li>
             <li id="lissajousItem"><a href="#">Lissajous</a></li>
             <li id="cosstackItem"><a href="#">Cosine</a></li>
             <div id="marker"></div>
           </ul>
+          <!-- Properties, die alle Knoten haben -->
           <span class="circle-properties">
             <label class="uilabel" for="name">Name</label>
-            <input class="text" type="text" id="name" placeholder="Enter a name for the knot" />
+            <dialog
+              id="alert"
+              role="dialog"
+              aria-labelledby="alert-dialog-heading"
+            >
+              <h3 id="alert-dialog-heading">Knoten Namen eingeben</h3>
+              <form class="form" method="dialog">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="knotname"
+                  name="name"
+                  placeholder="Knoten Name"
+                />
+                <button class="button" id="confirmbtn" value="default">
+                  Submit
+                </button>
+              </form>
+            </dialog>
+            <input
+              class="text"
+              type="text"
+              id="name"
+              placeholder="Enter a name for the knot"
+            />
             <label class="uilabel" for="maxVectors">Resolution</label>
-            <input class="slider" type="range" id="maxVectors" min="100" max="100000" step="100" value="10000" />
+            <input
+              class="slider"
+              type="range"
+              id="maxVectors"
+              min="100"
+              max="100000"
+              step="100"
+              value="10000"
+            />
             <span class="value" id="maxVectorsValue">10000</span>
             <label class="uilabel" for="radius">Radius</label>
-            <input class="slider" type="range" id="radius" min="50" max="500" step="10" value="200" />
+            <input
+              class="slider"
+              type="range"
+              id="radius"
+              min="50"
+              max="500"
+              step="10"
+              value="200"
+            />
             <span class="value" id="radiusValue">200</span>
             <label class="uilabel" for="sradius">sphere radius</label>
-            <input class="slider" type="range" id="sradius" min="1" max="5" step="0.1" value="2.5" />
+            <input
+              class="slider"
+              type="range"
+              id="sradius"
+              min="1"
+              max="5"
+              step="0.1"
+              value="2.5"
+            />
             <span class="value" id="sradiusValue">2.5</span>
             <label class="uilabel" for="drawSpeed">Draw Speed</label>
-            <input class="slider" type="range" id="drawSpeed" min="50" max="10000" step="10" value="300" />
+            <input
+              class="slider"
+              type="range"
+              id="drawSpeed"
+              min="50"
+              max="10000"
+              step="10"
+              value="300"
+            />
             <span class="value" id="drawSpeedValue">300</span>
           </span>
           <!-- end of circleProperties -->
+          <!-- Torus Properties -->
           <span class="torus" id="torus">
             <label class="uilabel" for="p">p</label>
-            <input class="slider" type="range" id="p" min="0" max="10" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="p"
+              min="0"
+              max="10"
+              value="0"
+            />
             <span class="value" id="pValue">0</span>
             <label class="uilabel" for="q">q</label>
-            <input class="slider" type="range" id="q" min="0" max="10" value="1" />
+            <input
+              class="slider"
+              type="range"
+              id="q"
+              min="0"
+              max="10"
+              value="1"
+            />
             <span class="value" id="qValue">1</span>
             <label class="uilabel" for="m">m</label>
-            <input class="slider" type="range" id="m" min="0" max="10" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="m"
+              min="0"
+              max="10"
+              value="0"
+            />
             <span class="value" id="mValue">0</span>
             <label class="uilabel" for="trefoilK">k</label>
-            <input class="slider" type="range" id="trefoilK" min="0" max="5" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="trefoilK"
+              min="0"
+              max="5"
+              value="0"
+            />
             <span class="value" id="kValue">0</span>
           </span>
           <!-- end of torus -->
+          <!-- Lissajous Properties -->
           <span class="lissajous" id="lissajous">
             <label class="uilabel" for="nx">nx</label>
-            <input class="slider" type="range" id="nx" min="1" max="10" value="2" step="1" />
+            <input
+              class="slider"
+              type="range"
+              id="nx"
+              min="1"
+              max="10"
+              value="2"
+              step="1"
+            />
             <span class="value" id="nxValue">2</span>
             <label class="uilabel" for="ny">ny</label>
-            <input class="slider" type="range" id="ny" min="1" max="10" value="2" step="1" />
+            <input
+              class="slider"
+              type="range"
+              id="ny"
+              min="1"
+              max="10"
+              value="2"
+              step="1"
+            />
             <span class="value" id="nyValue">2</span>
             <label class="uilabel" for="nz">nz</label>
-            <input class="slider" type="range" id="nz" min="1" max="10" value="6" step="1" />
+            <input
+              class="slider"
+              type="range"
+              id="nz"
+              min="1"
+              max="10"
+              value="6"
+              step="1"
+            />
             <span class="value" id="nzValue">6</span>
             <label class="uilabel" for="bx">bx</label>
-            <input class="slider" type="range" id="bx" min="0" max="10" value="2.5" step="0.01" />
+            <input
+              class="slider"
+              type="range"
+              id="bx"
+              min="0"
+              max="10"
+              value="2.5"
+              step="0.01"
+            />
             <span class="value" id="bxValue">2.5</span>
             <label class="uilabel" for="by">by</label>
-            <input class="slider" type="range" id="by" min="0" max="10" value="0.15" step="0.01" />
+            <input
+              class="slider"
+              type="range"
+              id="by"
+              min="0"
+              max="10"
+              value="0.15"
+              step="0.01"
+            />
             <span class="value" id="byValue">0.15</span>
             <label class="uilabel" for="bz">bz</label>
-            <input class="slider" type="range" id="bz" min="1" max="10" value="1" step="0.01" />
+            <input
+              class="slider"
+              type="range"
+              id="bz"
+              min="1"
+              max="10"
+              value="1"
+              step="0.01"
+            />
             <span class="value" id="bzValue">1</span>
             <label class="uilabel" for="nz2">nz2</label>
-            <input class="slider" type="range" id="nz2" min="1" max="10" value="5" step="1" />
+            <input
+              class="slider"
+              type="range"
+              id="nz2"
+              min="1"
+              max="10"
+              value="5"
+              step="1"
+            />
             <span class="value" id="nz2Value">5</span>
           </span>
           <!-- end of lissajous -->
+          <!-- CosStack Properties -->
           <span class="cosstack" id="cosstack">
             <label class="uilabel" for="xc1">xc1</label>
-            <input class="slider" type="range" id="xc1" min="-200" max="200" value="-22" />
+            <input
+              class="slider"
+              type="range"
+              id="xc1"
+              min="-200"
+              max="200"
+              value="-22"
+            />
             <span class="value" id="xc1Value">-22</span>
             <label class="uilabel" for="xs1">xs1</label>
-            <input class="slider" type="range" id="xs1" min="-200" max="200" value="-128" />
+            <input
+              class="slider"
+              type="range"
+              id="xs1"
+              min="-200"
+              max="200"
+              value="-128"
+            />
             <span class="value" id="xs1Value">-128</span>
             <label class="uilabel" for="xc2">xc2</label>
-            <input class="slider" type="range" id="xc2" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="xc2"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="xc2Value">0</span>
             <label class="uilabel" for="xs2">xs2</label>
-            <input class="slider" type="range" id="xs2" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="xs2"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="xs2Value">0</span>
             <label class="uilabel" for="xc3">xc3</label>
-            <input class="slider" type="range" id="xc3" min="-200" max="200" value="-44" />
+            <input
+              class="slider"
+              type="range"
+              id="xc3"
+              min="-200"
+              max="200"
+              value="-44"
+            />
             <span class="value" id="xc3Value">-44</span>
             <label class="uilabel" for="xs3">xs3</label>
-            <input class="slider" type="range" id="xs3" min="-200" max="200" value="-78" />
+            <input
+              class="slider"
+              type="range"
+              id="xs3"
+              min="-200"
+              max="200"
+              value="-78"
+            />
             <span class="value" id="xs3Value">-78</span>
             <label class="uilabel" for="xc4">xc4</label>
-            <input class="slider" type="range" id="xc4" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="xc4"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="xc4Value">0</span>
             <label class="uilabel" for="xs4">xs4</label>
-            <input class="slider" type="range" id="xs4" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="xs4"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="xs4Value">0</span>
             <label class="uilabel" for="yc1">yc1</label>
-            <input class="slider" type="range" id="yc1" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="yc1"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="yc1Value">0</span>
             <label class="uilabel" for="ys1">ys1</label>
-            <input class="slider" type="range" id="ys1" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="ys1"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="ys1Value">0</span>
             <label class="uilabel" for="yc2">yc2</label>
-            <input class="slider" type="range" id="yc2" min="-200" max="200" value="-10" />
+            <input
+              class="slider"
+              type="range"
+              id="yc2"
+              min="-200"
+              max="200"
+              value="-10"
+            />
             <span class="value" id="yc2Value">-10</span>
             <label class="uilabel" for="ys2">ys2</label>
-            <input class="slider" type="range" id="ys2" min="-200" max="200" value="-27" />
+            <input
+              class="slider"
+              type="range"
+              id="ys2"
+              min="-200"
+              max="200"
+              value="-27"
+            />
             <span class="value" id="ys2Value">-27</span>
             <label class="uilabel" for="yc3">yc3</label>
-            <input class="slider" type="range" id="yc3" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="yc3"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="yc3Value">0</span>
             <label class="uilabel" for="ys3">ys3</label>
-            <input class="slider" type="range" id="ys3" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="ys3"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="ys3Value">0</span>
             <label class="uilabel" for="yc4">yc4</label>
-            <input class="slider" type="range" id="yc4" min="-200" max="200" value="38" />
+            <input
+              class="slider"
+              type="range"
+              id="yc4"
+              min="-200"
+              max="200"
+              value="38"
+            />
             <span class="value" id="yc4Value">38</span>
             <label class="uilabel" for="ys4">ys4</label>
-            <input class="slider" type="range" id="ys4" min="-200" max="200" value="46" />
+            <input
+              class="slider"
+              type="range"
+              id="ys4"
+              min="-200"
+              max="200"
+              value="46"
+            />
             <span class="value" id="ys4Value">46</span>
             <label class="uilabel" for="zc1">zc1</label>
-            <input class="slider" type="range" id="zc1" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="zc1"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="zc1Value">0</span>
             <label class="uilabel" for="zs1">zs1</label>
-            <input class="slider" type="range" id="zs1" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="zs1"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="zs1Value">0</span>
             <label class="uilabel" for="zc2">zc2</label>
-            <input class="slider" type="range" id="zc2" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="zc2"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="zc2Value">0</span>
             <label class="uilabel" for="zs2">zs2</label>
-            <input class="slider" type="range" id="zs2" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="zs2"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="zs2Value">0</span>
             <label class="uilabel" for="zc3">zc3</label>
-            <input class="slider" type="range" id="zc3" min="-200" max="200" value="70" />
+            <input
+              class="slider"
+              type="range"
+              id="zc3"
+              min="-200"
+              max="200"
+              value="70"
+            />
             <span class="value" id="zc3Value">70</span>
             <label class="uilabel" for="zs3">zs3</label>
-            <input class="slider" type="range" id="zs3" min="-200" max="200" value="-40" />
+            <input
+              class="slider"
+              type="range"
+              id="zs3"
+              min="-200"
+              max="200"
+              value="-40"
+            />
             <span class="value" id="zs3Value">-40</span>
             <label class="uilabel" for="zc4">zc4</label>
-            <input class="slider" type="range" id="zc4" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="zc4"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="zc4Value">0</span>
             <label class="uilabel" for="zs4">zs4</label>
-            <input class="slider" type="range" id="zs4" min="-200" max="200" value="0" />
+            <input
+              class="slider"
+              type="range"
+              id="zs4"
+              min="-200"
+              max="200"
+              value="0"
+            />
             <span class="value" id="zs4Value">0</span>
           </span>
           <!-- end of cosstack -->
+          <!-- Save Button -->
           <div class="btn save-button"><a href="#">Save</a></div>
         </span>
         <!-- end of container -->
@@ -177,6 +491,7 @@
         </div>
         <!-- end of container -->
       </div>
+      <!-- end of right box -->
     </section>
   </body>
 </html>
