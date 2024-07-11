@@ -1,31 +1,98 @@
 import { db } from './db.js'
 import { KnotParameters } from './knot.js'
 import { el } from './lib.js'
+import { globals } from './main.js'
 
 export const saveKnot = () => {
   if (el('#name').value === '') {
     console.log('no name')
     return
   }
+
+  switch (globals.knotType) {
+    case 'torus':
+      saveTorus()
+      break
+    case 'lissajous':
+      saveLissajous()
+      break
+    case 'cosstack':
+      saveCosstack()
+      break
+  }
+}
+
+const saveTorus = () => {
   const knot = {
     id: Math.floor(Math.random() * 1000000) + 1000000,
     type: 'torus',
     name: el('#name').value,
-    maxVectors: el('#maxVectors').value,
-    radius: el('#radius').value,
-    r0: el('#r0').value,
-    r: el('#r').value,
-    p: el('#p').value,
-    px: el('#px').value,
-    q: el('#q').value,
-    nx: el('#nx').value,
-    ny: el('#ny').value,
-    m: el('#m').value,
-    phi: el('#phi').value,
-    k: el('#trefoilK').value
+    maxVectors: parseInt(el('#maxVectors').value),
+    radius: parseInt(el('#radius').value),
+    p: parseInt(el('#p').value),
+    q: parseInt(el('#q').value),
+    m: parseInt(el('#m').value),
+    k: parseInt(el('#trefoilK').value)
   }
-  // db.update(knot)
-  console.log(knot)
+  db.update(knot)
+}
+
+const saveLissajous = () => {
+  const knot = {
+    id: Math.floor(Math.random() * 1000000) + 1000000,
+    type: 'lissajous',
+    name: el('#name').value,
+    maxVectors: parseInt(el('#maxVectors').value),
+    radius: parseInt(el('#radius').value),
+    nx: parseInt(el('#nx').value),
+    ny: parseInt(el('#ny').value),
+    nz: parseInt(el('#nz').value),
+    bx: parseFloat(el('#bx').value),
+    by: parseFloat(el('#by').value),
+    bz: parseFloat(el('#bz').value),
+    nz2: parseInt(el('#nz2').value)
+  }
+  db.update(knot)
+}
+
+const saveCosstack = () => {
+  const knot = {
+    id: Math.floor(Math.random() * 1000000) + 1000000,
+    type: 'cosstack',
+    name: el('#name').value,
+    maxVectors: parseInt(el('#maxVectors').value),
+    radius: parseInt(el('#radius').value),
+    options: {
+      xc1: parseInt(el('#xc1').value),
+      xc2: parseInt(el('#xc2').value),
+      xc3: parseInt(el('#xc3').value),
+      xc4: parseInt(el('#xc4').value),
+      yc1: parseInt(el('#yc1').value),
+      yc2: parseInt(el('#yc2').value),
+      yc3: parseInt(el('#yc3').value),
+      yc4: parseInt(el('#yc4').value),
+      zc1: parseInt(el('#zc1').value),
+      zc2: parseInt(el('#zc2').value),
+      zc3: parseInt(el('#zc3').value),
+      zc4: parseInt(el('#zc4').value),
+      xs1: parseInt(el('#xs1').value),
+      xs2: parseInt(el('#xs2').value),
+      xs3: parseInt(el('#xs3').value),
+      xs4: parseInt(el('#xs4').value),
+      ys1: parseInt(el('#ys1').value),
+      ys2: parseInt(el('#ys2').value),
+      ys3: parseInt(el('#ys3').value),
+      ys4: parseInt(el('#ys4').value),
+      zs1: parseInt(el('#zs1').value),
+      zs2: parseInt(el('#zs2').value),
+      zs3: parseInt(el('#zs3').value),
+      zs4: parseInt(el('#zs4').value),
+      xoffset: 0,
+      yoffset: 0,
+      zoffset: 0
+    }
+  }
+  db.update(knot)
 }
 
 export const initDB = () => {

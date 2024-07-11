@@ -11,8 +11,8 @@ import { loadKnots } from './db_read.js'
 import { saveKnot } from './db_save.js'
 import { el } from './lib.js'
 
-const globals = {
-  knotType: 'torus',
+export const globals = {
+  knotType: 'torus'
 }
 
 const sketch = function (p5) {
@@ -36,22 +36,22 @@ const sketch = function (p5) {
   function getCurrentValues () {
     let vals
     switch (globals.knotType) { // knotType
-      case 'torus': 
+      case 'torus':
         vals = {
-        name: el('#name').value,
-        maxVectors: parseInt(el('#maxVectors').value),
-        radius: parseInt(el('#radius').value),
-        r: 0,
-        p: parseInt(el('#p').value),
-        px: 0,
-        q: parseInt(el('#q').value),
-        nx: 1,
-        ny: 1,
-        m: parseInt(el('#m').value),
-        phi: 0,
-        k: parseInt(el('#trefoilK').value)
-      }
-      break
+          name: el('#name').value,
+          maxVectors: parseInt(el('#maxVectors').value),
+          radius: parseInt(el('#radius').value),
+          r: 0,
+          p: parseInt(el('#p').value),
+          px: 0,
+          q: parseInt(el('#q').value),
+          nx: 1,
+          ny: 1,
+          m: parseInt(el('#m').value),
+          phi: 0,
+          k: parseInt(el('#trefoilK').value)
+        }
+        break
       case 'lissajous':
         vals = {
           name: el('#name').value,
@@ -94,7 +94,7 @@ const sketch = function (p5) {
           zs1: parseInt(el('#zs1').value),
           zs2: parseInt(el('#zs2').value),
           zs3: parseInt(el('#zs3').value),
-          zs4: parseInt(el('#zs4').value),
+          zs4: parseInt(el('#zs4').value)
         }
         break
       default:
@@ -160,7 +160,7 @@ const sketch = function (p5) {
           knot1.zs1 === knot2.zs1 &&
           knot1.zs2 === knot2.zs2 &&
           knot1.zs3 === knot2.zs3 &&
-          knot1.zs4 === knot2.zs4 
+          knot1.zs4 === knot2.zs4
         )
       default:
         return false
@@ -172,7 +172,7 @@ const sketch = function (p5) {
     let newKnot = knot
     if (!areKnotsEqual(current, prev) && animate === false) {
       animate = true
-      switch(globals.knotType) {
+      switch (globals.knotType) {
         case 'torus':
           newKnot = KnotFactory.createTorusKnot(
             p5,
@@ -203,7 +203,7 @@ const sketch = function (p5) {
             current.nx2
           )
           break
-        case 'cosstack':
+        case 'cosstack': {
           const options = new KnotParameters()
           options.xc1 = current.xc1
           options.xc2 = current.xc2
@@ -236,6 +236,7 @@ const sketch = function (p5) {
             options
           )
           break
+        }
       }
       prev = current
     }
@@ -309,18 +310,17 @@ const unselectIndicator = (e) => {
     case 'lissajous':
       marker.style.left = '79px'
       marker.style.width = '107px'
-      break;
+      break
     case 'cosstack':
       marker.style.left = '186px'
       marker.style.width = '90px'
-      break;
+      break
     case 'torus':
     default:
       marker.style.left = '0px'
       marker.style.width = '79px'
-      break;
+      break
   }
-  
 }
 
 export const initButtons = () => {
@@ -342,7 +342,7 @@ export const initButtons = () => {
   })
 
   el('.save-button').addEventListener('click', saveKnot)
-  el('#torusItem').addEventListener('click', (e) => { 
+  el('#torusItem').addEventListener('click', (e) => {
     globals.knotType = 'torus'
     el('#torus').classList.add('show')
     el('#lissajous').classList.remove('show')
