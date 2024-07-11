@@ -34,6 +34,25 @@
           <!-- Properties, die alle Knoten haben -->
           <span class="circle-properties">
             <label class="uilabel" for="name">Name</label>
+            <dialog
+              id="alert"
+              role="dialog"
+              aria-labelledby="alert-dialog-heading"
+            >
+              <h3 id="alert-dialog-heading">Knoten Namen eingeben</h3>
+              <form class="form" method="dialog">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="knotname"
+                  name="name"
+                  placeholder="Knoten Name"
+                />
+                <button class="button" id="confirmbtn" value="default">
+                  Submit
+                </button>
+              </form>
+            </dialog>
             <input
               class="text"
               type="text"

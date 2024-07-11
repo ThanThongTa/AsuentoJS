@@ -506,3 +506,75 @@ h1 {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+#alert {
+  position: absolute;
+  top: 200px;
+  left: 550px;
+  width: 25vw;
+  height: 20vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  color: #fff;
+}
+
+#alert::backdrop {
+  background: linear-gradient(45deg, transparent, rgba(255, 0, 0, 0.4));
+}
+
+#alert h3 {
+  width: 22vw;
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+#alert .form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  margin-right: 20px;
+}
+
+#alert .form #knotname {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-left: 10px;
+  height: 30px;
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 16px;
+}
+
+#alert .form #knotname::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+}
+
+#alert .form .button {
+  grid-column: 1 / span 2;
+  color: #fff;
+  height: 30px;
+  margin-top: 10px;
+  width: 95%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}

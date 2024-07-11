@@ -1,14 +1,34 @@
 import { db } from './db.js'
 import { el } from './lib.js'
 import { globals } from './main.js'
+import { loadKnots } from './db_read.js'
 
 // speichert den aktuellen Knoten in die Datenbank
 export const saveKnot = () => {
   if (el('#name').value === '') {
-    console.log('no name')
+    const dialog = el('#alert')
+    const confirmBtn = el('#confirmbtn')
+    const nameInput = el('#name')
+    const knotnameInput = el('#knotname')
+    dialog.showModal()
+    dialog.addEventListener('close', () => {
+      nameInput.value = dialog.returnValue
+      if (dialog.returnValue === '') return
+      saveKnotToDB()
+      loadKnots()
+    })
+    confirmBtn.addEventListener('click', (event) => {
+      event.preventDefault()
+      dialog.close(knotnameInput.value)
+    })
     return
   }
 
+  saveKnotToDB()
+  loadKnots()
+}
+
+const saveKnotToDB = () => {
   switch (globals.knotType) {
     case 'torus':
       saveTorus()

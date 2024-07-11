@@ -11,7 +11,10 @@ export const loadKnots = async () => {
   // Datenbank Aufruf
   const dbData = await db.readAll()
   // falls noch keine Daten in der Liste sind, werden einige Standardknoten hinzugefügt
-  if (!dbData || !dbData.length) { initDB() }
+  if (!dbData || !dbData.length) {
+    initDB()
+    loadKnots()
+  }
   // neue KNotenliste erstellen
   listArea.append(renderKnotList(dbData))
 }
