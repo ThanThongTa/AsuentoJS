@@ -344,32 +344,28 @@ export const initButtons = () => {
   el('.save-button').addEventListener('click', saveKnot)
   el('#torusItem').addEventListener('click', (e) => { 
     globals.knotType = 'torus'
-    el('#torus').style.display = 'grid'
-    el('#lissajous').style.display = 'none'
-    el('#cosstack').style.display = 'none'
+    el('#torus').classList.add('show')
+    el('#lissajous').classList.remove('show')
+    el('#cosstack').classList.remove('show')
     Indicator(e)
   })
   el('#lissajousItem').addEventListener('click', (e) => {
     globals.knotType = 'lissajous'
-    el('#torus').style.display = 'none'
-    el('#lissajous').style.display = 'grid'
-    el('#cosstack').style.display = 'none'
+    el('#torus').classList.remove('show')
+    el('#lissajous').classList.add('show')
+    el('#cosstack').classList.remove('show')
     Indicator(e)
   })
   el('#cosstackItem').addEventListener('click', (e) => {
     globals.knotType = 'cosstack'
-    el('#torus').style.display = 'none'
-    el('#lissajous').style.display = 'none'
-    el('#cosstack').style.display = 'grid'
+    el('#torus').classList.remove('show')
+    el('#lissajous').classList.remove('show')
+    el('#cosstack').classList.add('show')
     Indicator(e)
   })
 }
 
 export const initSliders = () => {
-  el('#torus').style.display = 'grid'
-  el('#lissajous').style.display = 'none'
-  el('#cosstack').style.display = 'none'
-
   el('#maxVectors').addEventListener('input', () => {
     el('#maxVectorsValue').innerText = el('#maxVectors').value
   })
