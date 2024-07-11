@@ -1,18 +1,7 @@
 {
   "name": "trefoil",
-  "scripts": {
-    "test": "mocha"
-  },
-  "devDependencies": {
-    "mocha": "^10.5.2",
-    "standard": "*"
-  },
   "version": "0.0.1",
   "description": "3d knot geometry using p5.js and webgl",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ThanThongTa/AsuentoJS.git"
@@ -30,9 +19,5 @@
   "bugs": {
     "url": "https://github.com/ThanThongTa/AsuentoJS/issues"
   },
-  "homepage": "https://github.com/ThanThongTa/AsuentoJS#readme",
-  "dependencies": {
-    "cowsay": "^1.6.0",
-    "express": "^4.19.2"
-  }
+  "homepage": "https://github.com/ThanThongTa/AsuentoJS#readme"
 }
