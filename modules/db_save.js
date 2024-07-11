@@ -6,6 +6,7 @@ import { loadKnots } from './db_read.js'
 // speichert den aktuellen Knoten in die Datenbank
 export const saveKnot = () => {
   if (el('#name').value === '') {
+    // zeige einen Dialog an, weenn kein Name eingegeben wurde
     const dialog = el('#alert')
     const confirmBtn = el('#confirmbtn')
     const nameInput = el('#name')
@@ -14,7 +15,9 @@ export const saveKnot = () => {
     dialog.addEventListener('close', () => {
       nameInput.value = dialog.returnValue
       if (dialog.returnValue === '') return
+      // nur abspeichern, wenn tatsächlich ein Name eingegeben wurde
       saveKnotToDB()
+      // nach dem Abspeichern der Daten wird die Liste neu geladen
       loadKnots()
     })
     confirmBtn.addEventListener('click', (event) => {
@@ -23,11 +26,12 @@ export const saveKnot = () => {
     })
     return
   }
-
+  // falls ein Name eingetragen wurde, direkt speichern ohne Dialog
   saveKnotToDB()
   loadKnots()
 }
 
+// speichert den aktuellen Knoten in die Datenbank
 const saveKnotToDB = () => {
   switch (globals.knotType) {
     case 'torus':

@@ -100,7 +100,6 @@ function loadKnot (knot) {
       el('#cosstack').classList.remove('show')
       break
     case 'cosstack':
-      console.log(knot)
       el('#xc1').value = knot.options.xc1
       el('#xc3').value = knot.options.xc3
       el('#xc2').value = knot.options.xc2
