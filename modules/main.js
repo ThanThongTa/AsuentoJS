@@ -33,6 +33,7 @@ const sketch = function (p5) {
   let prev = {}
   let current = {}
 
+  // ermittelt die aktuellen Werte
   function getCurrentValues () {
     let vals
     switch (globals.knotType) { // knotType
@@ -104,6 +105,7 @@ const sketch = function (p5) {
     return vals
   }
 
+  // vergleicht die aktuellen Wete mit den vorherigen
   function areKnotsEqual (knot1, knot2) {
     switch (globals.knotType) { // knotType
       case 'torus':
@@ -167,6 +169,7 @@ const sketch = function (p5) {
     }
   }
 
+  // aktuualisiert den gerade angezeigten Knoten mit den neuen Werten
   function updateKnot () {
     current = getCurrentValues()
     let newKnot = knot
@@ -304,6 +307,7 @@ export const displaySketch = () => {
   myp5.display = true
 }
 
+// bewegt den Marker wieder zurück nach dem die Maus sich weg bewegt hat
 const unselectIndicator = (e) => {
   const marker = document.querySelector('#marker')
   switch (globals.knotType) {
@@ -324,6 +328,7 @@ const unselectIndicator = (e) => {
 }
 
 export const initButtons = () => {
+  // für den Marker des Knotentypens
   const marker = document.querySelector('#marker')
   const items = document.querySelectorAll('ul li a')
 
@@ -341,7 +346,13 @@ export const initButtons = () => {
     link.addEventListener('mouseout', e => unselectIndicator(e))
   })
 
-  el('.save-button').addEventListener('click', saveKnot)
+  // speichert den aktuellen Knoten und lädt dann die Liste neu
+  el('.save-button').addEventListener('click', () => {
+    saveKnot()
+    loadKnots()
+  })
+
+  // anzeigen des jeweiligen Knoten-Typens
   el('#torusItem').addEventListener('click', (e) => {
     globals.knotType = 'torus'
     el('#torus').classList.add('show')
@@ -365,6 +376,7 @@ export const initButtons = () => {
   })
 }
 
+// Fügt den Slidern ein Event hinzu, damit der neue Wert auch angezeigt wird
 export const initSliders = () => {
   el('#maxVectors').addEventListener('input', () => {
     el('#maxVectorsValue').innerText = el('#maxVectors').value
@@ -485,6 +497,7 @@ export const initSliders = () => {
   })
 }
 
+// lädt die Liste der Knoten aus der Datenbank
 export const initKnotList = () => { loadKnots() }
 
 // Service Worker für die Offline Installation

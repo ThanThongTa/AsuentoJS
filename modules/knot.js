@@ -287,27 +287,6 @@ export class KnotFactory {
       case KnotTypes.LISSAJOUS5:
         knot = new LissaKnot(p5, maxVectors, radius, 2, 3, 7, 0.22, 1.10, 0, 0)
         break
-      case KnotTypes.EIGHTS:
-        options.xc1 = 10
-        options.xc2 = 1
-        options.xc3 = 10
-        options.xc4 = 1
-        options.ys1 = 6
-        options.ys3 = 10
-        options.zs3 = 4
-        options.zs4 = 4
-        options.zoffset = 1
-        knot = new CosStackKnot(p5, maxVectors, radius, options)
-        break
-      case KnotTypes.CLOVER:
-        options.xc1 = 4 / 3
-        options.xc3 = 2
-        options.yc1 = 4 / 3
-        options.yc3 = 2
-        options.zs2 = 0.5
-        options.zs4 = 1
-        knot = new CosStackKnot(p5, maxVectors, radius, options)
-        break
       case KnotTypes.GRANNY: // COMPOSITE
         options.xc1 = -22
         options.xs1 = -128
