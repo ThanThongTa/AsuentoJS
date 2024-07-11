@@ -463,10 +463,9 @@ h1 {
 .knotlist .knot {
   display: grid;
   grid-template-columns: 8fr 1fr 1fr;
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1),
-    0 15px 35px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.01),
+    0 15px 35px rgba(255, 255, 255, 0.01);
   color: #fff;
-  /* background-color: rgba(255, 255, 255, 0.1); */
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   border-top-right-radius: 25px;
@@ -482,19 +481,24 @@ h1 {
 
 .knotlist .knot .knotname {
   color: #fff;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
   padding-left: 25px;
-  position: relative;
-  top: 10px;
+  padding-top: 10px;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .knotlist .knot .loader {
-  background-color: rgba(0, 255, 255, 0.2);
+  background: linear-gradient(45deg, rgba(0, 255, 255, 0.2), transparent);
   cursor: pointer;
   padding: 10px;
 }
 
 .knotlist .knot .delete {
-  background-color: rgba(255, 0, 0, 0.2);
+  background: linear-gradient(45deg, transparent, rgba(255, 0, 0, 0.4));
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   cursor: pointer;
