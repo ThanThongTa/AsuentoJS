@@ -4,28 +4,28 @@ On my way to learning coding basics, I want to create this Javascript app,
 where a user can change and save settings for a mathematically computated 3D knot
 
 Anleitung für Mac Development Machines, um ein Zertifikat zu erstellen,
-und dem self signed certificate zu vertrauen.
-Kein apache, MAMP, XAMPP, nodeJS oder sonstigen SSL Server erforderlich.
+dem self signed certificate zu vertrauen, und den Live Server im VS Code
+so einzustellen, dass die Zertifikate verwendet werden.
+
+Kein apache, MAMP, XAMPP, nodeJS oder sonstiger SSL Server erforderlich.
 Es muss nur ein Zertifikat vorhanden sein, dem vertraut werden soll.
+
+Die folgenden 5 Schritte sind nicht notwendig, wenn bereits ein Zertifikat vorhanden ist,
+und können übersprungen werden. Weiter geht es dann bei Schritt 6, Zertifikat vertrauen.
 
 Benötigt:
 Terminal-Zugriff / CommandLine
 Homebrew
 OpenSSL
 
-Das hier ist nicht nötig, wenn es bereits ein Zertifikat gibt.
-Falls bereits ein Zertifikat vorhanden ist, muss dem Zertifikat vertraut werden.
-Und es müssen noch ein paar Einstellungen in der settings.json gemacht werden.
-Dazu dann weiter unten mehr.
-
-Überprüfen, ob OpenSSL installiert ist:
+Schritt 1: Überprüfen, ob OpenSSL installiert ist:
 
 - Terminal öffnen
 - Folgendes Command eingeben: `openssl version`
 - wenn eine Version angezeigt wird, ist openssl installiert
 - wenn nicht, am besten über HomeBrew nach installieren
 
-Überprüfen, ob HomeBrew installiert ist:
+Schritt 2: Überprüfen, ob HomeBrew installiert ist:
 
 - dazu im Terminal diesen Command ausführen: `brew --version`
 - falls HomeBrew nicht installiert ist, gibt es in GitHub unter
@@ -33,9 +33,11 @@ Dazu dann weiter unten mehr.
   [Homebrew Github](https://github.com/Homebrew/brew/releases)
 - .pkg herunterladen und installieren
 
-Installation von OpenSSL über HomeBrew:
+Schritt 4: Installation von OpenSSL über HomeBrew:
 
 - im Terminal diesen Command ausführen: `brew install openssl@3`
+
+Schritt 5: Zertifikat erstellen
 
 Wenn OpenSSL installiert ist:
 Laut [Let's encrypt](https://letsencrypt.org/docs/certificates-for-localhost/)
@@ -51,9 +53,9 @@ openssl req -x509 -out localhost.crt -keyout localhost.key \
 
 Es werden zwei Dateien erzeugt. `localhost.key` und `localhost.cert`
 
-Nun geht es darum, dem Zertifikat zu vertrauen.
+Schritt 6: Zertifikat vertrauen
 
-Diese können dann im Finder in ein Verzeichnis deiner Wahl verschoben werden
+Diese können im Finder in ein Verzeichnis deiner Wahl verschoben werden
 (z.B. /User/Student/certs)
 
 - Verzeichnis mit dem Zertifikat im Finder öffnen
@@ -66,8 +68,11 @@ Diese können dann im Finder in ein Verzeichnis deiner Wahl verschoben werden
 - Dialog schließen. Wenn nötig, Passwort eingeben und bestätigen.
 - Fertig.
 
+Schritt 7: Live Server für den VS Code einstellen
+
 Für die Einstellungen des Live Servers, die settings.json in VS Code öffnen:
 
+- VS Code öffnen
 - Command + Komma öffnet die VS Code Settings
 - Rechts oben in der Leiste befinden sich drei Icons. Auf das linke Icon klicken.
 - die settings.json öffnet sich. Möglicherweise ist sie leer,
