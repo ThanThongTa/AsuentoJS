@@ -1,5 +1,6 @@
 import { del, get, keys, set, values } from './idb-src.min.js'
 
+// Wrapper für die Indexed DB
 export const db = {
 
   readItem: function (key) {
@@ -23,6 +24,7 @@ export const db = {
     return del(key)
   },
   update: function (item) {
+    // speichert ein Item
     const key = item.id
     this.writeItem(key, item)
   }

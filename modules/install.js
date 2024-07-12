@@ -1,3 +1,4 @@
+// Button für die Offline Installation
 export function addButton () {
   let deferredPrompt
   const addBtn = document.querySelector('.add-button')

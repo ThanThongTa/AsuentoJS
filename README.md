@@ -80,3 +80,8 @@ Einstellungen in der VS Code settings.json für den Live Server:
   },
 }
 ```
+
+Wichtig ist hier, dass die Settings für host genauso heißen muss, wie im Zertifikat angegeben.
+In unserem Fall also "localhost". Bei einem unterschiedlichen Namen oder wenn der Eintrag
+vergessen wird, wird das Zertifikat als ungültig angesehen vom Browser und es erscheint eine
+Fehlermeldung.

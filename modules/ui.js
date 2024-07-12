@@ -4,6 +4,7 @@ import { KnotFactory } from './knot.js'
 import { loadKnots } from './db_read.js'
 import { saveKnot } from './db_save.js'
 
+// Klasse als Vermittler zwischen dem User Interface und der Geschäfts-ogik
 export class UserInterface {
   constructor (p5) {
     this.prev = {}
