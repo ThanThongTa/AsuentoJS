@@ -12,12 +12,17 @@ Je nachdem, mit welchen mathematischen Formeln die einzelnen Punkte der Knoten b
 habe ich die Knoten in 3 Kategorien unterteilt und diese mit einem Namen versehen. Diese Namen
 sind nicht unbedingt mathematisch korrekt.
 
-Je nach Kategorie gibt es verschiedene Slider, mit denen der User die Parameter für den Knoten
+Je nach Kategorie gibt es links verschiedene Slider, mit denen der User die Parameter für den Knoten
 ändern kann. Bei jeder Änderung zeichnet sich dann der Knoten neu.
 
 Der Knoten kann auch in die IndexedDB gespeichert und wieder geladen werden.
 
 Beim erstmaligen Start der Anwendung werden eine Reihe von Knoten in die IndexedDB gespeichert.
+
+Knoten können aus der rechts angezeigten Liste geladen werden. Sie können dort auch aus der
+Liste und aus der IndexedDB gelöscht werden.
+
+Der Install Button erstellt Offline Version als Chrome App.
 
 Diese Anwendung verwendet p5js und WebGL als Grundlage für die Darstellung der Knoten. p5js
 stellt auch Orbital Controls zur Verfügung, damit der User mit der Maus hinein und hinaus zoomen
