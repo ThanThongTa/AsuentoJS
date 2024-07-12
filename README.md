@@ -13,6 +13,11 @@ Terminal-Zugriff / CommandLine
 Homebrew
 OpenSSL
 
+Das hier ist nicht nötig, wenn es bereits ein Zertifikat gibt.
+Falls bereits ein Zertifikat vorhanden ist, muss dem Zertifikat vertraut werden.
+Und es müssen noch ein paar Einstellungen in der settings.json gemacht werden.
+Dazu dann weiter unten mehr.
+
 Überprüfen, ob OpenSSL installiert ist:
 
 - Terminal öffnen
@@ -45,6 +50,8 @@ openssl req -x509 -out localhost.crt -keyout localhost.key \
 ```
 
 Es werden zwei Dateien erzeugt. `localhost.key` und `localhost.cert`
+
+Nun geht es darum, dem Zertifikat zu vertrauen.
 
 Diese können dann im Finder in ein Verzeichnis deiner Wahl verschoben werden
 (z.B. /User/Student/certs)
